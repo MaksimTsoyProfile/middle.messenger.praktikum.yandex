@@ -2,4 +2,4 @@
 
 export default `
     <button>My button</button>
-`
+`;
