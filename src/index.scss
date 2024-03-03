@@ -1,0 +1,31 @@
+@import 'src/assets/variables';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: Inter, sans-sans;
+  background-color: $white;
+  color: $black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  font-size: inherit;
+  line-height: inherit;
+}

@@ -1,5 +1,9 @@
 //language=hbs
 
 export default `
-    <div class="login-container">Login Page</div>
+  {{#> Dialog }}
+    <div class="login-container">
+      <div class='footer'>{{> Button text="Авторизоваться" }}</div>
+    </div>
+  {{/ Dialog }}
 `;
