@@ -12,7 +12,10 @@ export default `
           {{> Input type="password" name="password" label="Пароль" value="Пароль" }}
         </div>
       </div>
-      <div class='login-footer'>{{> Button text="Авторизоваться" }}</div>
+      <div class='login-footer'>
+        <div class='login-footer__authorize'>{{> Button text="Авторизоваться" }}</div>
+        <div class='login-footer__unauthorized'>{{> Link href="#" text="Нет аккаунта?" }}</div>
+      </div>
     </div>
   {{/ Dialog }}
 `;

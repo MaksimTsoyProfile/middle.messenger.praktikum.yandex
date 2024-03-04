@@ -16,13 +16,20 @@
     font-weight: normal;
     color: $black;
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
   &__input-block {
-    margin: 40px 0;
+    margin-bottom: 40px;
   }
 }
 
 .login-footer {
   width: 100%;
+  &__authorize {
+    margin-bottom: 6px;
+  }
+  &__unauthorized {
+    padding: 10px 0;
+    text-align: center;
+  }
 }

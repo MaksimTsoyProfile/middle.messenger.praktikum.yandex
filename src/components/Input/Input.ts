@@ -2,9 +2,11 @@
 
 export default `
   <div class="inputContainer">
-    {{#if value}}
-      <label for="{{ name }}" class="label">{{ label }}</label>
-    {{/if}}
+    <label for="{{ name }}" class="label">
+      {{#if value}}
+       {{ label }}
+      {{/if}}
+    </label>
     <input
       class="input"
       id="{{ name }}"
@@ -12,8 +14,10 @@ export default `
       name="{{ name }}"
       value="{{ value }}"
     />
-    {{#if error}}
-      <span class="error">{{ error }}</span>
-    {{/if}}  
+    <span class="error">
+      {{#if error}}
+        {{ error }}
+      {{/if}}
+    </span>
   </div>
 `;
