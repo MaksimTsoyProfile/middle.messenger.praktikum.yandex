@@ -1,10 +1,28 @@
+@import '../../assets/variables';
+
 .login-container {
-  width: 100%;
+  width: 340px;
+  height: 450px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
 }
 
-.footer {
+.login-body {
+  width: 100%;
+  &__title {
+    font-size: 24px;
+    font-weight: normal;
+    color: $black;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  &__input-block {
+    margin: 40px 0;
+  }
+}
+
+.login-footer {
   width: 100%;
 }
