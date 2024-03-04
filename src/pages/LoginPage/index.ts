@@ -1,2 +1,2 @@
-import './loginPage.scss'
-export { default as LoginPage } from './LoginPage.ts'
+import './loginPage.scss';
+export { default as LoginPage } from './LoginPage.ts';

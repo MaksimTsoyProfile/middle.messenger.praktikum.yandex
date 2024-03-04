@@ -1,5 +1,5 @@
 //language=hbs
 
 export default `
-    <button>My button</button>
-`
+    <button class='button'>{{text}}</button>
+`;
