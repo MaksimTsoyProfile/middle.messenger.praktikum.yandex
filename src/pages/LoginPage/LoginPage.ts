@@ -13,7 +13,7 @@ export default `
         </div>
       </div>
       <div class='login-footer'>
-        <div class='login-footer__authorize'>{{> Button text="Авторизоваться" }}</div>
+        <div class='login-footer__authorize'>{{> Button text="Авторизоваться" page="404" }}</div>
         <div class='login-footer__unauthorized'>{{> Link text="Нет аккаунта?" page="register" }}</div>
       </div>
     </div>

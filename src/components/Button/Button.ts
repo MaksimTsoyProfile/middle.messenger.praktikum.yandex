@@ -1,5 +1,5 @@
 //language=hbs
 
 export default `
-    <button class='button'>{{text}}</button>
+    <button class='button' page='{{ page }}'>{{ text }}</button>
 `;
