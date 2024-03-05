@@ -1,0 +1,17 @@
+@import '../../assets/variables';
+
+.avatar-container {
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 130px;
+  height: 130px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  .mock-image {
+    background: $lightGrey;
+    padding: 40px;
+  }
+}
