@@ -14,7 +14,7 @@ export default `
       </div>
       <div class='login-footer'>
         <div class='login-footer__authorize'>{{> Button text="Авторизоваться" }}</div>
-        <div class='login-footer__unauthorized'>{{> Link href="#" text="Нет аккаунта?" }}</div>
+        <div class='login-footer__unauthorized'>{{> Link text="Нет аккаунта?" page="register" }}</div>
       </div>
     </div>
   {{/ Dialog }}

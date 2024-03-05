@@ -1,11 +1,12 @@
 import Handlebars from 'handlebars';
 import * as Components from './components';
-import { LoginPage } from './pages';
+import { LoginPage, RegisterPage } from './pages';
 
 type Pages = Record<string, string>;
 
 const pages: Pages = {
   login: LoginPage,
+  register: RegisterPage,
 };
 
 const navigate = (page: string) => {
