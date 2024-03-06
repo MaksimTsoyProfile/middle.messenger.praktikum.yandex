@@ -11,7 +11,7 @@ export default `
       type='{{ type }}'
       name='{{ name }}'
       value='{{ value }}'
-      disabled='{{ disabled }}'
+      {{#if disabled}}disabled{{/if}}
     />
   </div>
 `;

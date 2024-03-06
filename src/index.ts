@@ -35,7 +35,7 @@ Object.entries(Contents).forEach(([name, content]) => {
   Handlebars.registerPartial(name, content);
 });
 
-document.addEventListener('DOMContentLoaded', () => navigate('login'));
+document.addEventListener('DOMContentLoaded', () => navigate('profile'));
 
 document.addEventListener('click', (e: MouseEvent) => {
   const target = e.target as HTMLElement;

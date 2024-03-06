@@ -6,7 +6,7 @@ export default `
       {{> Avatar src='' }}
     </div>
     <div class='profile-container__input'>
-      {{> InputField }}
+      {{> InputField name='email' type='email' value='pochta@yandex.ru' label='Почта' disabled=true }}
     </div>
   </div>
 `;
