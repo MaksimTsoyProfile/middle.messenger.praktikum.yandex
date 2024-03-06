@@ -2,6 +2,7 @@ import Handlebars from 'handlebars';
 import * as Components from './components';
 import * as Contents from './contents';
 import {
+  EditProfilePage,
   LoginPage,
   Page404,
   Page500,
@@ -17,6 +18,7 @@ const pages: Pages = {
   '404': Page404,
   '500': Page500,
   profile: ProfilePage,
+  editProfile: EditProfilePage,
 };
 
 const navigate = (page: string) => {
