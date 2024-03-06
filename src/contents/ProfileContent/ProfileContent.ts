@@ -32,7 +32,7 @@ export default `
           {{> Link page='editProfile' text='Изменить данные' }}
         </div>
         <div class='profile-container__links__item'>
-          {{> Link page='' text='Изменить пароль' }}
+          {{> Link page='editPassword' text='Изменить пароль' }}
         </div>
         <div class='profile-container__links__item-danger'>
           {{> Link page='' text='Выйти' danger=true }}
