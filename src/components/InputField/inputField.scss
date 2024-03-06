@@ -15,10 +15,10 @@
   &__input {
     border: none;
     outline: none;
-    padding: 5px;
+    padding: 5px 0;
     color: $grey;
-    background: $lightGrey;
     font-size: 14px;
+    text-align: right;
     &:disabled {
       background: $white;
     }

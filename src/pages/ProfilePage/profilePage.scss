@@ -9,6 +9,17 @@
     margin-bottom: 10px;
   }
   &__input {
-
+    margin-bottom: 4px;
+  }
+  &__links {
+    margin-top: 60px;
+    &__item {
+      padding: 6px;
+      border-bottom: 1px solid $lightGrey;
+      margin-bottom: 6px;
+    }
+    &__item-danger {
+      padding: 6px;
+    }
   }
 }
