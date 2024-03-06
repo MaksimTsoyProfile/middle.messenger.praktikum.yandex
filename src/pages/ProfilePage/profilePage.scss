@@ -1,2 +1,13 @@
 @import '../../assets/variables';
 
+.profile-container {
+  display: flex;
+  margin: 0 auto;
+  max-width: 510px;
+  &__avatar {
+
+  }
+  &__input {
+
+  }
+}

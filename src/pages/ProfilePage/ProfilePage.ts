@@ -3,7 +3,7 @@
 export default `
   <div class='profile-container'>
     <div class='profile-container__avatar'>
-      {{> Avatar src='/icons/IMG_4474.jpg' }}
+      {{> Avatar src='' }}
     </div>
     <div class='profile-container__input'>
       {{> InputField }}
