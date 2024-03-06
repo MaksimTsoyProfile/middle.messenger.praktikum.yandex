@@ -1,20 +1,20 @@
 //language=hbs
 
 export default `
-  <div class="inputContainer">
-    <label for="{{ name }}" class="label">
+  <div class="input-container">
+    <label for="{{ name }}" class="input-container__label">
       {{#if value}}
        {{ label }}
       {{/if}}
     </label>
     <input
-      class="input"
+      class="input-container__input"
       id="{{ name }}"
       type="{{ type }}"
       name="{{ name }}"
       value="{{ value }}"
     />
-    <span class="error">
+    <span class="input-container__error">
       {{#if error}}
         {{ error }}
       {{/if}}
