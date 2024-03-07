@@ -9,7 +9,13 @@
     font-size: 13px;
     color: $grey;
   }
-
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #666;
+  }
   &__input {
     border: none;
     outline: none;

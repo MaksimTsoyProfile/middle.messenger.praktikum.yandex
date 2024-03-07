@@ -2,6 +2,7 @@ import Handlebars from 'handlebars';
 import * as Components from './components';
 import * as Contents from './contents';
 import {
+  ChatPage,
   EditPasswordPage,
   EditProfilePage,
   LoginPage,
@@ -21,6 +22,7 @@ const pages: Pages = {
   profile: ProfilePage,
   editProfile: EditProfilePage,
   editPassword: EditPasswordPage,
+  chat: ChatPage,
 };
 
 const navigate = (page: string) => {
@@ -39,7 +41,7 @@ Object.entries(Contents).forEach(([name, content]) => {
   Handlebars.registerPartial(name, content);
 });
 
-document.addEventListener('DOMContentLoaded', () => navigate('profile'));
+document.addEventListener('DOMContentLoaded', () => navigate('chat'));
 
 document.addEventListener('click', (e: MouseEvent) => {
   const target = e.target as HTMLElement;

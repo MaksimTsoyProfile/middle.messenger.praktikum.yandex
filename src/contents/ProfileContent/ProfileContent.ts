@@ -3,7 +3,9 @@
 export default `
   <div class='profile-container'>
     <div class='profile-container__avatar'>
-      {{> Avatar src='' }}
+      <div class='profile-container__avatar-wrapper'>
+        {{> Avatar src='' }}
+      </div>
     </div>
     <div class='profile-container__title'>
       <h2>Иван</h2>
