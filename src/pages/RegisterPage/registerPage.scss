@@ -1,0 +1,35 @@
+@import '../../assets/variables';
+
+.register-container {
+  width: 340px;
+  height: 615px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.register-body {
+  width: 100%;
+  &__title {
+    font-size: 24px;
+    font-weight: normal;
+    color: $black;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  &__input-block {
+    margin-bottom: 10px;
+  }
+}
+
+.register-footer {
+  width: 100%;
+  &__authorize {
+    margin-bottom: 6px;
+  }
+  &__unauthorized {
+    padding: 10px 0;
+    text-align: center;
+  }
+}

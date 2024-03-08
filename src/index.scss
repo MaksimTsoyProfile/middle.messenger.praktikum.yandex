@@ -8,13 +8,15 @@ html, body {
   height: 100%;
 }
 
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: Inter, sans-serif;
   background-color: $white;
   color: $black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 a {
@@ -28,4 +30,8 @@ a {
 button {
   font-size: inherit;
   line-height: inherit;
+}
+
+#app {
+  height: 100%;
 }

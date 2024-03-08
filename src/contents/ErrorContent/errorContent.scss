@@ -1,0 +1,19 @@
+@import '../../assets/variables';
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h2 {
+    font-size: 40px;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 60px;
+  }
+}

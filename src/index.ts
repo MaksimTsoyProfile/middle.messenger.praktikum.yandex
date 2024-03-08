@@ -1,11 +1,28 @@
 import Handlebars from 'handlebars';
 import * as Components from './components';
-import { LoginPage } from './pages';
+import * as Contents from './contents';
+import {
+  ChatPage,
+  EditPasswordPage,
+  EditProfilePage,
+  LoginPage,
+  Page404,
+  Page500,
+  ProfilePage,
+  RegisterPage,
+} from './pages';
 
 type Pages = Record<string, string>;
 
 const pages: Pages = {
   login: LoginPage,
+  register: RegisterPage,
+  '404': Page404,
+  '500': Page500,
+  profile: ProfilePage,
+  editProfile: EditProfilePage,
+  editPassword: EditPasswordPage,
+  chat: ChatPage,
 };
 
 const navigate = (page: string) => {
@@ -19,6 +36,9 @@ const navigate = (page: string) => {
 };
 Object.entries(Components).forEach(([name, component]) => {
   Handlebars.registerPartial(name, component);
+});
+Object.entries(Contents).forEach(([name, content]) => {
+  Handlebars.registerPartial(name, content);
 });
 
 document.addEventListener('DOMContentLoaded', () => navigate('login'));
