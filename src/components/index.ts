@@ -6,3 +6,4 @@ export { Avatar } from './Avatar';
 export { InputField } from './InputField';
 export { SearchInput } from './SearchInput';
 export { UserItem } from './UserItem';
+export { ChatInput } from './ChatInput';

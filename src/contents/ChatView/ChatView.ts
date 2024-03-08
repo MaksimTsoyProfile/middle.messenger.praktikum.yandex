@@ -38,5 +38,10 @@ export default `
           </div>
         {{/each}}
       </div>
+      <form class='chat-view__footer'>
+        <img src='../../icons/clip.svg' alt='clip' class='chat-view__footer__clip'>
+        {{> ChatInput }}
+        <img src='../../icons/arrowRightIcon.svg' alt='arrow' class='chat-view__footer__arrow'>
+      </form>
     </div>
 `;

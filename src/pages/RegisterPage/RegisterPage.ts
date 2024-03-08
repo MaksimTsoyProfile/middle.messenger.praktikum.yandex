@@ -3,7 +3,7 @@
 export default `
   {{#> Wrapper }}
     {{#> Dialog }}
-      <div class="register-container">
+      <form class="register-container">
         <div class='register-body'>
           <h2 class='register-body__title'>Регистрация</h2>
           <div class='register-body__input-block'>

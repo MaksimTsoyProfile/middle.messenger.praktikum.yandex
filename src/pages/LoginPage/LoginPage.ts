@@ -3,7 +3,7 @@
 export default `
   {{#> Wrapper }}
     {{#> Dialog }}
-      <div class='login-container'>
+      <form class='login-container'>
         <div class='login-body'>
           <h2 class='login-body__title'>Вход</h2>
           <div class='login-body__input-block'>
@@ -14,10 +14,10 @@ export default `
           </div>
         </div>
         <div class='login-footer'>
-          <div class='login-footer__authorize'>{{> Button text='Авторизоваться' page='404' }}</div>
+          <div class='login-footer__authorize'>{{> Button text='Авторизоваться' page='chat' }}</div>
           <div class='login-footer__unauthorized'>{{> Link text='Нет аккаунта?' page='register' }}</div>
         </div>
-      </div>
+      </form>
     {{/ Dialog }}
   {{/ Wrapper }}
 `;

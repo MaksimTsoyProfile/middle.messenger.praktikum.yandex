@@ -1,7 +1,7 @@
 //language=hbs
 
 export default `
-  <div class='profile-page-container'>
+  <main class='profile-page-container'>
     {{> ProfileContent notEdit=true }}
-  </div>
+  </main>
 `;

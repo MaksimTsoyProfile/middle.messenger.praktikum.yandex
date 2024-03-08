@@ -1,9 +1,11 @@
 //language=hbs
 
 export default `
-  <div class='edit-password'>
+  <form class='edit-password'>
     <div class='edit-password__avatar'>
-      {{> Avatar src='' }}
+      <div class='edit-password__avatar-wrapper'>
+        {{> Avatar src='' }}
+      </div>
     </div>
     <div class='edit-password__input'>
       {{> InputField name='oldPassword' type='password' value='password' label='Старый пароль' disabled=false }}
