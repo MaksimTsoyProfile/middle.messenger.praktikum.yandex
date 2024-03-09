@@ -1,9 +1,9 @@
 //language=hbs
 
 export default `
-  <main>
-    {{#> Wrapper }}
-      {{#> Dialog }}
+  {{#> Wrapper }}
+    {{#> Dialog }}
+      <main>
         <form class='login-container'>
           <div class='login-body'>
             <h2 class='login-body__title'>Вход</h2>
@@ -19,7 +19,7 @@ export default `
             <div class='login-footer__unauthorized'>{{> Link text='Нет аккаунта?' page='register' }}</div>
           </div>
         </form>
-      {{/ Dialog }}
-    {{/ Wrapper }}
-  </main>
+      </main>
+    {{/ Dialog }}
+  {{/ Wrapper }}
 `;

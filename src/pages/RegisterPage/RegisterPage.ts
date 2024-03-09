@@ -1,9 +1,9 @@
 //language=hbs
 
 export default `
-  <main>
-    {{#> Wrapper }}
-      {{#> Dialog }}
+  {{#> Wrapper }}
+    {{#> Dialog }}
+      <main>
         <form class="register-container">
           <div class='register-body'>
             <h2 class='register-body__title'>Регистрация</h2>
@@ -34,7 +34,7 @@ export default `
             <div class='register-footer__unauthorized'>{{> Link text='Войти' page='login' }}</div>
           </div>
         </form>
-      {{/ Dialog }}
-    {{/ Wrapper }}
-  </main>
+      </main>  
+    {{/ Dialog }}
+  {{/ Wrapper }}
 `;
