@@ -1,7 +1,7 @@
 //language=hbs
 
 export default `
-  <div class='profile-container'>
+  <form class='profile-container'>
     <div class='profile-container__avatar'>
       <div class='profile-container__avatar-wrapper'>
         {{> Avatar src='' }}
@@ -45,5 +45,5 @@ export default `
         {{> Button text='Сохранить' page='profile'}}
       </div>
     {{/if}}
-  </div>
+  </form>
 `;

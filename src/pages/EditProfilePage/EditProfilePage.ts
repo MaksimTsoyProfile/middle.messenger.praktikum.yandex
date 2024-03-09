@@ -1,7 +1,7 @@
 //language=hbs
 
 export default `
-  <div class='edit-profile'>
+  <main class='edit-profile'>
     {{> ProfileContent notEdit=false }}
-  </div>
+  </main>
 `;
