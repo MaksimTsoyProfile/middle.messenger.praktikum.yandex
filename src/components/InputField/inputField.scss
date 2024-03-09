@@ -1,0 +1,26 @@
+@import "../../assets/variables";
+
+.input-field-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid $lightGrey;
+
+  &__label {
+    font-size: 14px;
+    color: $black;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    padding: 5px 0;
+    color: $grey;
+    font-size: 14px;
+    text-align: right;
+    &:disabled {
+      background: $white;
+    }
+  }
+}
