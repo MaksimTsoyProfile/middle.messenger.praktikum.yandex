@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2396b2b-510e-4f89-b86a-2c2afdc6de87" name="Changes" comment="" />
+    <list default="true" id="427a81b6-8b67-4ec7-b66b-b4db629eb337" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +29,7 @@
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "sprint__1",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/src/components/ChatInput",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
