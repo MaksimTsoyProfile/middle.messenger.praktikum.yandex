@@ -53,7 +53,7 @@ import {
 //   }
 // });
 
-const block = new Page404();
+const block = new EditProfilePage();
 const container = document.getElementById('app')!;
 console.log(container);
 container.append(block.getContent()!);

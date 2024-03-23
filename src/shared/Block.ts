@@ -146,7 +146,7 @@ export default class Block {
 
     Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
-      stub.replaceWith(child.getContent());
+      stub?.replaceWith(child.getContent());
     });
 
     Object.entries(this.lists).forEach(([key, child]) => {
