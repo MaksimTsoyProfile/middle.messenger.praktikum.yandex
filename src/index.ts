@@ -1,6 +1,3 @@
-import Handlebars from 'handlebars';
-import * as Components from './components';
-import * as Contents from './contents';
 import {
   ChatPage,
   EditPasswordPage,
@@ -12,48 +9,45 @@ import {
   RegisterPage,
 } from './pages';
 
-// type Pages = Record<string, object>;
-//
-// const pages: Pages = {
-//   login: LoginPage,
-//   register: RegisterPage,
-//   '404': Page404,
-//   '500': Page500,
-//   profile: ProfilePage,
-//   editProfile: EditProfilePage,
-//   editPassword: EditPasswordPage,
-//   chat: ChatPage,
-// };
-//
-// const navigate = (page: string) => {
-//   const root = document.querySelector('#app');
-//   const pageString: string | undefined = pages[page];
-//
-//   if (root && pageString) {
-//     const compiledTemplate = Handlebars.compile(pageString);
-//     root.innerHTML = compiledTemplate({});
-//   }
-// };
-// Object.entries(Components).forEach(([name, component]) => {
-//   Handlebars.registerPartial(name, component);
-// });
-// Object.entries(Contents).forEach(([name, content]) => {
-//   Handlebars.registerPartial(name, content);
-// });
-//
-// document.addEventListener('DOMContentLoaded', () => navigate('404'));
-//
-// document.addEventListener('click', (e: MouseEvent) => {
-//   const target = e.target as HTMLElement;
-//   const page = target.getAttribute('page');
-//   if (page) {
-//     navigate(page);
-//     e.preventDefault();
-//     e.stopImmediatePropagation();
-//   }
-// });
+type Page =
+  | LoginPage
+  | RegisterPage
+  | Page404
+  | Page500
+  | ProfilePage
+  | EditProfilePage
+  | EditPasswordPage
+  | ChatPage;
 
-const block = new EditProfilePage();
-const container = document.getElementById('app')!;
-console.log(container);
-container.append(block.getContent()!);
+type Pages = Record<string, Page>;
+
+const pages: Pages = {
+  login: new LoginPage(),
+  register: new RegisterPage(),
+  '404': new Page404(),
+  '500': new Page500(),
+  profile: new ProfilePage(),
+  editProfile: new EditProfilePage(),
+  editPassword: new EditPasswordPage({ src: '' }),
+  chat: new ChatPage(),
+};
+
+const navigate = (page: string) => {
+  const container = document.getElementById('app');
+  const block = pages[page];
+  if (container && block) {
+    container.replaceChildren(block.getContent()!);
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => navigate('login'));
+
+document.addEventListener('click', (e: MouseEvent) => {
+  const target = e.target as HTMLElement;
+  const page = target.getAttribute('page');
+  if (page) {
+    navigate(page);
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
+});

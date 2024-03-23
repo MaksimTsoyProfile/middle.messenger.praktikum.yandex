@@ -4,7 +4,7 @@ import { Button } from '../../components/Button';
 import Block from '../../shared/Block.ts';
 
 type EditPasswordPageProps = {
-  src: string;
+  src?: string;
 };
 
 class EditPasswordPage extends Block {

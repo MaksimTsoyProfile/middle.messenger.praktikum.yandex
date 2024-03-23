@@ -18,9 +18,9 @@ class ChatPage extends Block {
         <div class='chat-container__user-list'>
           {{{ ChatUserList }}}
         </div>
-<!--        <div class='chat-container__chat-view'>-->
-<!--          {{> ChatView name='Иван' }}-->
-<!--        </div>-->
+        <div class='chat-container__chat-view'>
+          {{{ CharView }}}
+        </div>
       </main>
     `;
   }

@@ -5,7 +5,7 @@ type InputProps = {
   type: string;
   value: string;
   label: string;
-  error: string;
+  error?: string;
 };
 
 class Input extends Block {

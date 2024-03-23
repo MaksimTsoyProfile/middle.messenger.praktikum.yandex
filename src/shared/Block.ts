@@ -1,7 +1,7 @@
 import EventBus from './EventBus';
 import Handlebars from 'handlebars';
 
-type Props = Record<string, object>;
+type Props = Record<string, unknown>;
 
 type EventHandlers = Record<string, (event: Event) => void>;
 
@@ -160,12 +160,12 @@ export default class Block {
       });
       // fragment.content.innerHTML = listCont.content;
       const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
-      stub.replaceWith(listCont.content);
+      stub?.replaceWith(listCont.content);
     });
 
     const newElement = fragment.content.firstElementChild;
     if (this._element) {
-      this._element.replaceWith(newElement);
+      this._element?.replaceWith(newElement);
     }
     this._element = newElement;
     this._addEvents();
@@ -173,7 +173,7 @@ export default class Block {
 
   render(): void {}
 
-  getContent(): HTMLElement | null {
+  public getContent(): HTMLElement | null {
     return this.element;
   }
 
