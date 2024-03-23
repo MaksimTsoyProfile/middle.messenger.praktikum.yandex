@@ -12,43 +12,48 @@ import {
   RegisterPage,
 } from './pages';
 
-type Pages = Record<string, string>;
+// type Pages = Record<string, object>;
+//
+// const pages: Pages = {
+//   login: LoginPage,
+//   register: RegisterPage,
+//   '404': Page404,
+//   '500': Page500,
+//   profile: ProfilePage,
+//   editProfile: EditProfilePage,
+//   editPassword: EditPasswordPage,
+//   chat: ChatPage,
+// };
+//
+// const navigate = (page: string) => {
+//   const root = document.querySelector('#app');
+//   const pageString: string | undefined = pages[page];
+//
+//   if (root && pageString) {
+//     const compiledTemplate = Handlebars.compile(pageString);
+//     root.innerHTML = compiledTemplate({});
+//   }
+// };
+// Object.entries(Components).forEach(([name, component]) => {
+//   Handlebars.registerPartial(name, component);
+// });
+// Object.entries(Contents).forEach(([name, content]) => {
+//   Handlebars.registerPartial(name, content);
+// });
+//
+// document.addEventListener('DOMContentLoaded', () => navigate('404'));
+//
+// document.addEventListener('click', (e: MouseEvent) => {
+//   const target = e.target as HTMLElement;
+//   const page = target.getAttribute('page');
+//   if (page) {
+//     navigate(page);
+//     e.preventDefault();
+//     e.stopImmediatePropagation();
+//   }
+// });
 
-const pages: Pages = {
-  login: LoginPage,
-  register: RegisterPage,
-  '404': Page404,
-  '500': Page500,
-  profile: ProfilePage,
-  editProfile: EditProfilePage,
-  editPassword: EditPasswordPage,
-  chat: ChatPage,
-};
-
-const navigate = (page: string) => {
-  const root = document.querySelector('#app');
-  const pageString: string | undefined = pages[page];
-
-  if (root && pageString) {
-    const compiledTemplate = Handlebars.compile(pageString);
-    root.innerHTML = compiledTemplate({});
-  }
-};
-Object.entries(Components).forEach(([name, component]) => {
-  Handlebars.registerPartial(name, component);
-});
-Object.entries(Contents).forEach(([name, content]) => {
-  Handlebars.registerPartial(name, content);
-});
-
-document.addEventListener('DOMContentLoaded', () => navigate('login'));
-
-document.addEventListener('click', (e: MouseEvent) => {
-  const target = e.target as HTMLElement;
-  const page = target.getAttribute('page');
-  if (page) {
-    navigate(page);
-    e.preventDefault();
-    e.stopImmediatePropagation();
-  }
-});
+const block = new Page404();
+const container = document.getElementById('app')!;
+console.log(container);
+container.append(block.getContent()!);
