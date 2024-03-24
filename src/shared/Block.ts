@@ -3,6 +3,8 @@ import Handlebars from 'handlebars';
 
 type Props = Record<string, unknown>;
 
+type Attributes = Record<string, string>;
+
 type EventHandlers = Record<string, (event: Event) => void>;
 
 type Events = {
@@ -31,7 +33,7 @@ export default class Block {
   lists: object;
   children: Children | object;
 
-  constructor(propsWithChildren: object = {}) {
+  constructor(propsWithChildren: Props = {}) {
     const eventBus = new EventBus();
     const { props, children, lists } =
       this._getChildrenPropsAndProps(propsWithChildren);
@@ -92,10 +94,10 @@ export default class Block {
     return true;
   }
 
-  _getChildrenPropsAndProps(propsAndChildren) {
-    const children = {};
-    const props = {};
-    const lists = {};
+  _getChildrenPropsAndProps(propsAndChildren: Props) {
+    const children: Record<string, Block> = {};
+    const props: Props = {};
+    const lists: any = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -106,15 +108,14 @@ export default class Block {
         props[key] = value;
       }
     });
-
     return { children, props, lists };
   }
 
   addAttributes() {
-    const { attr = {} } = this.props;
+    const { attr = {} as Attributes } = this.props;
 
     Object.entries(attr).forEach(([key, value]) => {
-      this._element.setAttribute(key, value);
+      this._element?.setAttribute(key, value as string);
     });
   }
 
@@ -131,7 +132,7 @@ export default class Block {
   }
 
   _render() {
-    const propsAndStubs: object = { ...this.props };
+    const propsAndStubs: Props = { ...this.props };
     const _tmpId = Math.floor(100000 + Math.random() * 900000);
     Object.entries(this.children).forEach(([key, child]) => {
       propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
@@ -151,9 +152,9 @@ export default class Block {
 
     Object.entries(this.lists).forEach(([key, child]) => {
       const listCont = this._createDocumentElement('template');
-      child.forEach((item) => {
+      child.forEach((item: Block | string) => {
         if (item instanceof Block) {
-          listCont.content.append(item.getContent());
+          listCont.content.append(item.getContent() as Node);
         } else {
           listCont.content.append(`${item}`);
         }
@@ -163,11 +164,11 @@ export default class Block {
       stub?.replaceWith(listCont.content);
     });
 
-    const newElement = fragment.content.firstElementChild;
+    const newElement = fragment.content.firstElementChild as Node;
     if (this._element) {
       this._element?.replaceWith(newElement);
     }
-    this._element = newElement;
+    this._element = newElement as HTMLElement;
     this._addEvents();
   }
 
@@ -188,7 +189,10 @@ export default class Block {
       set(target: Props, prop: string, value) {
         const oldTarget = { ...target };
         target[prop] = value;
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, {
+          oldProps: oldTarget,
+          newProps: target,
+        });
         return true;
       },
       deleteProperty() {
@@ -197,8 +201,8 @@ export default class Block {
     });
   }
 
-  _createDocumentElement(tagName: string): HTMLElement {
-    return document.createElement(tagName);
+  _createDocumentElement(tagName: string): HTMLTemplateElement {
+    return document.createElement(tagName) as HTMLTemplateElement;
   }
 
   show(): void {

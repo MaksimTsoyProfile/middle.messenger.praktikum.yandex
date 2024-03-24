@@ -2,13 +2,10 @@ import Block from '../../shared/Block.ts';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { Link } from '../../components/Link';
-// import { Dialog } from '../../components/Dialog';
 
 class LoginPage extends Block {
   constructor() {
     super({
-      // Dialog: new Dialog({
-      // }),
       LoginInput: new Input({
         type: 'text',
         name: 'login',
@@ -24,6 +21,7 @@ class LoginPage extends Block {
         error: 'Неверный логин',
       }),
       Button: new Button({
+        type: 'submit',
         text: 'Авторизоваться',
         page: 'chat',
       }),
@@ -33,11 +31,13 @@ class LoginPage extends Block {
       }),
     });
   }
+
   override render() {
     return `
       <div class='wrapper'>
+        <div class='dialog'>
           <main>
-            <form class='login-container'>
+            <form class='login-container' submit={this.submit}>
               <div class='login-body'>
                 <h2 class='login-body__title'>Вход</h2>
                 <div class='login-body__input-block'>
@@ -53,6 +53,7 @@ class LoginPage extends Block {
               </div>
             </form>
           </main>
+        </div>
       </div>
     `;
   }

@@ -6,6 +6,7 @@ type InputProps = {
   value: string;
   label: string;
   error?: string;
+  // onChange: (value: string) => void;
 };
 
 class Input extends Block {
@@ -16,6 +17,11 @@ class Input extends Block {
       value: props.value,
       label: props.label,
       error: props.error,
+      // events: {
+      //   change: (e: Event) =>
+      //     props.onChange((e.target as HTMLInputElement)?.value),
+      //   blur: () => this.validate(),
+      // },
     });
   }
   override render() {

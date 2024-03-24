@@ -65,6 +65,7 @@ class RegisterPage extends Block {
   override render() {
     return `
       <div class='wrapper'>
+        <div class='dialog'>
           <main>
             <form class="register-container">
               <div class='register-body'>
@@ -97,6 +98,7 @@ class RegisterPage extends Block {
               </div>
             </form>
           </main>
+        </div>
       </div>
     `;
   }
