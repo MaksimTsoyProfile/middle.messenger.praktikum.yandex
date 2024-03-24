@@ -76,6 +76,7 @@ class ProfileContent extends Block {
         page: 'profile',
       }),
       name: props.name,
+      notEdit: props.notEdit,
     });
   }
   override render() {

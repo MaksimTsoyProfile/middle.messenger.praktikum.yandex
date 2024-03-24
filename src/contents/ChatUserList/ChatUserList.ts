@@ -43,11 +43,6 @@ class ChatUserList extends Block {
           {{{ SearchInput }}}
         </div>
         {{{ lists }}}
-<!--        {{#each lists}}-->
-<!--          <div class='chat-user__item'>-->
-<!--            {{{ list }}}-->
-<!--          </div>-->
-<!--        {{/each}}-->
       </div>
     `;
   }
