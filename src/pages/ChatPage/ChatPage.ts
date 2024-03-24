@@ -1,5 +1,5 @@
 import Block from '../../shared/Block.ts';
-import { ChatUserList } from '../../contents';
+import { ChatUserList, ChatView } from '../../contents';
 
 class ChatPage extends Block {
   constructor() {
@@ -7,9 +7,10 @@ class ChatPage extends Block {
       ChatUserList: new ChatUserList({
         value: '',
       }),
-      // ChatView: new ChatView({
-      //   name: 'Иван',
-      // }),
+      ChatView: new ChatView({
+        name: 'Иван',
+        src: '',
+      }),
     });
   }
   override render() {
@@ -19,7 +20,7 @@ class ChatPage extends Block {
           {{{ ChatUserList }}}
         </div>
         <div class='chat-container__chat-view'>
-          {{{ CharView }}}
+          {{{ ChatView }}}
         </div>
       </main>
     `;
