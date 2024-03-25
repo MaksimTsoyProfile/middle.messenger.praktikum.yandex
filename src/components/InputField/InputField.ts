@@ -21,7 +21,9 @@ class InputField extends Block {
         blur: (event: Event) => {
           const target = event.target as HTMLInputElement;
           this.setProps({ value: target.value });
-          this.setProps({ error: validate(target.value, this.props.name) });
+          this.setProps({
+            error: validate(target.value, this.props.name),
+          });
         },
       },
     });

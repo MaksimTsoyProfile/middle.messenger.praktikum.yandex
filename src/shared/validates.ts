@@ -47,5 +47,5 @@ export const validate = (
     phone: validatePhone(value),
     message: validateMessage(value),
   };
-  return errorByFieldName[fieldName];
+  return errorByFieldName[fieldName as FieldName];
 };
