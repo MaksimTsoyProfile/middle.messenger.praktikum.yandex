@@ -48,7 +48,10 @@ export default class Block {
   _addEvents() {
     const { events = {} as EventHandlers } = this.props;
     Object.keys(events).forEach((eventName) => {
-      this._element?.addEventListener(eventName, events[eventName]);
+      const inputElement = this._element?.querySelector('input');
+      if (inputElement) {
+        inputElement.addEventListener(eventName, events[eventName]);
+      }
     });
   }
 
