@@ -50,12 +50,15 @@ export default class Block {
     Object.keys(events).forEach((eventName) => {
       const inputElement = this._element?.querySelector('input');
       const formElement = this._element?.querySelector('form');
-      if (inputElement && eventName === ('blur' || 'focus')) {
+      // if (inputElement && eventName === ('blur' || 'focus')) {
+      //   inputElement.addEventListener(eventName, events[eventName]);
+      // } else if (formElement && eventName === 'submit') {
+      //   formElement.addEventListener(eventName, events[eventName]);
+      // } else {
+      //   this._element?.addEventListener(eventName, events[eventName]);
+      // }
+      if (inputElement) {
         inputElement.addEventListener(eventName, events[eventName]);
-      } else if (formElement && eventName === 'submit') {
-        formElement.addEventListener(eventName, events[eventName]);
-      } else {
-        this._element?.addEventListener(eventName, events[eventName]);
       }
     });
   }

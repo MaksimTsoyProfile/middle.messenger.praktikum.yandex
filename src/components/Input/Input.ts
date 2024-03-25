@@ -1,3 +1,4 @@
+import { validate } from '../../shared/validates.ts';
 import Block from '../../shared/Block.ts';
 
 type InputProps = {
@@ -6,6 +7,8 @@ type InputProps = {
   value: string;
   label: string;
   error?: string;
+  onBlur?: () => void;
+  onFocus?: () => void;
 };
 
 class Input extends Block {
@@ -17,11 +20,10 @@ class Input extends Block {
       label: props.label,
       error: props.error,
       events: {
-        blur: (event) => {
-          console.log('blur');
-        },
-        focus: (event) => {
-          console.log('focus');
+        blur: (event: Event) => {
+          const target = event.target as HTMLInputElement;
+          this.setProps({ value: target.value });
+          this.setProps({ error: validate(target.value, this.props.name) });
         },
       },
     });

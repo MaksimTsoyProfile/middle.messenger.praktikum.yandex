@@ -1,4 +1,3 @@
-// import { validateFirstName } from '../../shared/validates.ts';
 import Block from '../../shared/Block.ts';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
@@ -11,16 +10,8 @@ class LoginPage extends Block {
         type: 'text',
         name: 'login',
         label: 'Логин',
-        value: 'Test',
-        error: 'Неверный логин',
-        events: {
-          blur: (event) => {
-            console.log('blur');
-          },
-          focus: (event) => {
-            console.log('focus');
-          },
-        },
+        value: '',
+        error: '',
       }),
       PasswordInput: new Input({
         type: 'password',
@@ -46,7 +37,7 @@ class LoginPage extends Block {
       <div class='wrapper'>
         <div class='dialog'>
           <main>
-            <form class='login-container' submit={this.submit}>
+            <form class='login-container'>
               <div class='login-body'>
                 <h2 class='login-body__title'>Вход</h2>
                 <div class='login-body__input-block'>

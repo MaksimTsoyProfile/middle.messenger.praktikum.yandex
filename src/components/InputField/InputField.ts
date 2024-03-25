@@ -1,3 +1,4 @@
+import { validate } from '../../shared/validates.ts';
 import Block from '../../shared/Block.ts';
 
 type InputFieldProps = {
@@ -16,6 +17,13 @@ class InputField extends Block {
       type: props.type,
       value: props.value,
       disabled: props.disabled,
+      events: {
+        blur: (event: Event) => {
+          const target = event.target as HTMLInputElement;
+          this.setProps({ value: target.value });
+          this.setProps({ error: validate(target.value, this.props.name) });
+        },
+      },
     });
   }
   override render() {
@@ -24,14 +32,21 @@ class InputField extends Block {
         <label for='{{ name }}' class='input-field-container__label'>
            {{ label }}
         </label>
-        <input
-          class='input-field-container__input'
-          id='{{ name }}'
-          type='{{ type }}'
-          name='{{ name }}'
-          value='{{ value }}'
-          {{#if disabled}}disabled{{/if}}
-        />
+        <div class='input-field-container__text'>
+          <input
+            class='input-field-container__text__input'
+            id='{{ name }}'
+            type='{{ type }}'
+            name='{{ name }}'
+            value='{{ value }}'
+            {{#if disabled}}disabled{{/if}}
+          />
+          <span class='input-field-container__text__error'>
+            {{#if error}}
+              {{ error }}
+            {{/if}}
+          </span>
+        </div>
       </div>
     `;
   }
