@@ -20,15 +20,20 @@ class Input extends Block {
       label: props.label,
       error: props.error,
       events: {
-        blur: (event: Event) => {
-          const target = event.target as HTMLInputElement;
-          this.setProps({ value: target.value });
-          this.setProps({ error: validate(target.value, this.props.name) });
+        blur: (e: Event) => {
+          this.handleBlur.bind(this.inputElement)(e);
         },
       },
     });
   }
+  handleBlur = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    this.setProps({ value: target.value });
+    this.setProps({ error: validate(target.value, this.props.name) });
+  };
+  inputElement = this.getContent()?.querySelector('input');
   override render() {
+    console.log(this);
     return `
       <div class='input-container' tabindex="0">
         <label for='{{ name }}' class='input-container__label'>
