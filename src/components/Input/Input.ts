@@ -41,6 +41,7 @@ class Input extends Block {
           id='{{ name }}'
           type='{{ type }}'
           name='{{ name }}'
+          placeholder='{{ label }}'
           value='{{ value }}'
         />
         <span class='input-container__error'>

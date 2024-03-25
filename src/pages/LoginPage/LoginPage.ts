@@ -17,8 +17,8 @@ class LoginPage extends Block {
         type: 'password',
         name: 'password',
         label: 'Пароль',
-        value: 'Пароль',
-        error: 'Неверный логин',
+        value: '',
+        error: '',
       }),
       Button: new Button({
         type: 'submit',
