@@ -13,6 +13,14 @@ class LoginPage extends Block {
         label: 'Логин',
         value: 'Test',
         error: 'Неверный логин',
+        events: {
+          blur: (event) => {
+            console.log('blur');
+          },
+          focus: (event) => {
+            console.log('focus');
+          },
+        },
       }),
       PasswordInput: new Input({
         type: 'password',

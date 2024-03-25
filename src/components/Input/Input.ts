@@ -17,7 +17,6 @@ class Input extends Block {
       label: props.label,
       error: props.error,
       events: {
-        click: () => {},
         blur: (event) => {
           console.log('blur');
         },
