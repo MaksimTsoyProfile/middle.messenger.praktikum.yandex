@@ -10,11 +10,13 @@ type Options = {
   timeout?: number;
   headers?: string;
   retries?: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: any;
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function queryStringify(data: Record<string, any>) {
   if (!data || typeof data !== 'object') {
     throw new Error('Invalid data object provided');
