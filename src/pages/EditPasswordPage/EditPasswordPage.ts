@@ -53,6 +53,11 @@ class EditPasswordPage extends Block {
     const form = event.target as HTMLFormElement;
     let isValid = true;
 
+    for (const inputElement of form.getElementsByTagName('input')) {
+      inputElement.focus();
+      inputElement.blur();
+    }
+
     for (const errorElement of form.getElementsByClassName('error')) {
       if (errorElement.textContent?.trim() !== '') {
         isValid = false;
