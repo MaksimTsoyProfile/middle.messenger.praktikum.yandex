@@ -1,7 +1,21 @@
-//language=hbs
+import { ProfileContent } from '../../contents/ProfileContent';
+import Block from '../../shared/Block.ts';
 
-export default `
-  <main class='profile-page-container'>
-    {{> ProfileContent notEdit=true }}
-  </main>
-`;
+class ProfilePage extends Block {
+  constructor() {
+    super({
+      ProfileContent: new ProfileContent({
+        notEdit: true,
+      }),
+    });
+  }
+  override render() {
+    return `
+      <main class='profile-page-container'>
+        {{{ ProfileContent }}}
+      </main>
+    `;
+  }
+}
+
+export default ProfilePage;

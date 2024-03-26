@@ -1,40 +1,136 @@
-//language=hbs
+import { navigate } from '../../shared/navigate.ts';
+import Block from '../../shared/Block.ts';
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
+import { Link } from '../../components/Link';
 
-export default `
-  {{#> Wrapper }}
-    {{#> Dialog }}
-      <main>
-        <form class="register-container">
-          <div class='register-body'>
-            <h2 class='register-body__title'>Регистрация</h2>
-            <div class='register-body__input-block'>
-              {{> Input type='email' name='email' label='Почта' value='pochta@yandex.ru' error='' }}
-            </div>
-            <div class='register-body__input-block'>
-              {{> Input type='text' name='login' label='Логин' value='ivanivanov' }}
-            </div>
-            <div class='register-body__input-block'>
-                {{> Input type='text' name='first_name' label='Имя' value='Иван' }}
-            </div>
-            <div class='register-body__input-block'>
-                {{> Input type='text' name='second_name' label='Фамилия' value='Иванов' }}
-            </div>
-            <div class='register-body__input-block'>
-                {{> Input type='text' name='phone' label='Телефон' value='+7 (909) 967 30 30' }}
-            </div>
-            <div class='register-body__input-block'>
-                {{> Input type='password' name='password' label='Пароль' value='Пароль' }}
-            </div>
-            <div class='register-body__input-block'>
-                {{> Input type='password' name='password' label='Пароль (еще раз)' value='Пароль' }}
-            </div>
-          </div>
-          <div class='register-footer'>
-            <div class='register-footer__authorize'>{{> Button text='Зарегистрироваться' }}</div>
-            <div class='register-footer__unauthorized'>{{> Link text='Войти' page='login' }}</div>
-          </div>
-        </form>
-      </main>  
-    {{/ Dialog }}
-  {{/ Wrapper }}
-`;
+class RegisterPage extends Block {
+  constructor() {
+    super({
+      EmailInput: new Input({
+        type: 'email',
+        name: 'email',
+        label: 'Почта',
+        value: '',
+        error: '',
+      }),
+      LoginInput: new Input({
+        type: 'text',
+        name: 'login',
+        label: 'Логин',
+        value: '',
+      }),
+      FirstNameInput: new Input({
+        type: 'text',
+        name: 'first_name',
+        label: 'Имя',
+        value: '',
+      }),
+      SecondNameInput: new Input({
+        type: 'text',
+        name: 'second_name',
+        label: 'Фамилия',
+        value: '',
+      }),
+      PhoneInput: new Input({
+        type: 'text',
+        name: 'phone',
+        label: 'Телефон',
+        value: '',
+      }),
+      PasswordInput: new Input({
+        type: 'password',
+        name: 'password',
+        label: 'Пароль',
+        value: '',
+      }),
+      ReplacePasswordInput: new Input({
+        type: 'password',
+        name: 'password',
+        label: 'Пароль (еще раз)',
+        value: '',
+      }),
+      Button: new Button({
+        type: 'submit',
+        text: 'Зарегистрироваться',
+        page: 'chat',
+      }),
+      Link: new Link({
+        text: 'Войти',
+        page: 'login',
+      }),
+      events: {
+        submit: (e: Event) => {
+          this.handleSubmit(e);
+        },
+      },
+    });
+  }
+
+  handleSubmit = (event: Event) => {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    let isValid = true;
+
+    for (const errorElement of form.getElementsByClassName('error')) {
+      if (errorElement.textContent?.trim() !== '') {
+        isValid = false;
+        break;
+      }
+    }
+
+    if (isValid) {
+      const formData = new FormData(form);
+      const data: Record<string, string> = {};
+      formData.forEach((value, key) => {
+        data[key] = value.toString();
+      });
+      console.log(data);
+      navigate('chat');
+      form.reset();
+    }
+  };
+
+  override render() {
+    return `
+      <div class='wrapper'>
+        <div class='dialog'>
+          <main>
+            <form class="register-container">
+              <div class='register-body'>
+                <h2 class='register-body__title'>Регистрация</h2>
+                <div class='register-body__input-block'>
+                  {{{ EmailInput }}}
+                </div>
+                <div class='register-body__input-block'>
+                  {{{ LoginInput }}}
+                </div>
+                <div class='register-body__input-block'>
+                  {{{ FirstNameInput }}}
+                </div>
+                <div class='register-body__input-block'>
+                   {{{ SecondNameInput }}}
+                </div>
+                <div class='register-body__input-block'>
+                   {{{ PhoneInput }}}
+                </div>
+                <div class='register-body__input-block'>
+                  {{{ PasswordInput }}}
+                </div>
+                <div class='register-body__input-block'>
+                  {{{ ReplacePasswordInput }}}
+                </div>
+              </div>
+              <div class='register-footer'>
+                <div class='register-footer__authorize'>{{{ Button }}}</div>
+                <div class='register-footer__unauthorized'>{{{ Link }}}</div>
+              </div>
+            </form>
+          </main>
+        </div>
+      </div>
+    `;
+  }
+}
+
+export default RegisterPage;

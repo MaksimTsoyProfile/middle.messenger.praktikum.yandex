@@ -1,14 +1,26 @@
-//language=hbs
+import Block from '../../shared/Block.ts';
+import { ErrorContent } from '../../contents/ErrorContent';
 
-export default `
-  {{#> Wrapper }}
-    <main class='not-found-container'>
-      {{> ErrorContent
-            title='404'
-            description='Мы уже фиксим'
-            linkText='Назад к чатам'
-            linkPage='login'
-      }}
-    </main>
-  {{/ Wrapper }}
-`;
+class Page404 extends Block {
+  constructor() {
+    super({
+      ErrorContent: new ErrorContent({
+        title: '404',
+        description: 'Мы уже фиксим',
+        linkText: 'Назад к чатам',
+        linkPage: 'login',
+      }),
+    });
+  }
+  override render() {
+    return `
+      <div class='wrapper'>
+        <main class='not-found-container'>
+          {{{ ErrorContent }}}
+        </main>
+      </div>
+    `;
+  }
+}
+
+export default Page404;
