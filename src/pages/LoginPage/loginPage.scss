@@ -1,3 +1,4 @@
+/* stylelint-disable-next-line */
 @import '../../assets/variables';
 
 .login-container {
@@ -25,6 +26,7 @@
 
 .login-body {
   width: 100%;
+
   &__title {
     font-size: 24px;
     font-weight: normal;
@@ -32,6 +34,7 @@
     text-align: center;
     margin-bottom: 40px;
   }
+
   &__input-block {
     margin-bottom: 20px;
   }
@@ -39,9 +42,11 @@
 
 .login-footer {
   width: 100%;
+
   &__authorize {
     margin-bottom: 6px;
   }
+
   &__unauthorized {
     padding: 10px 0;
     text-align: center;

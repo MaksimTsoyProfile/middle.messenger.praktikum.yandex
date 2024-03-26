@@ -5,8 +5,6 @@ type Props = Record<string, unknown>;
 
 type Attributes = Record<string, string>;
 
-type EventHandlers = Record<string, (event: Event) => void>;
-
 type Events = {
   INIT: string;
   FLOW_CDM: string;
@@ -46,8 +44,9 @@ export default class Block {
   }
 
   _addEvents() {
-    const { events = {} as EventHandlers } = this.props;
-    Object.keys(events as EventHandlers).forEach((eventName) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { events = {} as any } = this.props;
+    Object.keys(events).forEach((eventName) => {
       // Здесь я добавил обработку событий blur и submit так как у меня input и form обернут в div, альтернативой было напрямую переписать компоненты input и form, но я посчитал что это сломает мою папочную структуру
 
       const inputElement = this._element?.querySelector('input');
@@ -86,27 +85,28 @@ export default class Block {
   }
 
   // Может переопределять пользователь, необязательно трогать
-  componentDidMount(oldProps?: Props): void {}
+  componentDidMount(): void {}
 
   dispatchComponentDidMount(): void {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: Props, newProps: Props): void {
-    const response = this.componentDidUpdate(oldProps, newProps);
+  _componentDidUpdate(): void {
+    const response = this.componentDidUpdate();
     if (!response) {
       return;
     }
     this._render();
   }
 
-  componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+  componentDidUpdate(): boolean {
     return true;
   }
 
   _getChildrenPropsAndProps(propsAndChildren: Props) {
     const children: Record<string, Block> = {};
     const props: Props = {};
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const lists: any = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
@@ -148,7 +148,7 @@ export default class Block {
       propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
     });
 
-    Object.entries(this.lists).forEach(([key, child]) => {
+    Object.entries(this.lists).forEach(([key]) => {
       propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
 
@@ -160,7 +160,7 @@ export default class Block {
       stub?.replaceWith(child.getContent());
     });
 
-    Object.entries(this.lists).forEach(([key, child]) => {
+    Object.entries(this.lists).forEach(([, child]) => {
       const listCont = this._createDocumentElement('template');
       child.forEach((item: Block | string) => {
         if (item instanceof Block) {
@@ -189,6 +189,7 @@ export default class Block {
   }
 
   _makePropsProxy(props: Props): Props {
+    // eslint-disable-next-line
     const self = this;
 
     return new Proxy(props, {
