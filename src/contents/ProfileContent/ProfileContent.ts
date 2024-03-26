@@ -1,3 +1,4 @@
+import { navigate } from '../../shared/navigate.ts';
 import { Avatar } from '../../components/Avatar';
 import { Link } from '../../components/Link';
 import { Button } from '../../components/Button';
@@ -74,11 +75,42 @@ class ProfileContent extends Block {
       SaveButton: new Button({
         text: 'Сохранить',
         page: 'profile',
+        type: 'submit',
       }),
       name: props.name,
       notEdit: props.notEdit,
+      events: {
+        submit: (e: Event) => {
+          this.handleSubmit(e);
+        },
+      },
     });
   }
+
+  handleSubmit = (event: Event) => {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    let isValid = true;
+
+    for (const errorElement of form.getElementsByClassName('error')) {
+      if (errorElement.textContent?.trim() !== '') {
+        isValid = false;
+        break;
+      }
+    }
+
+    if (isValid) {
+      const formData = new FormData(form);
+      const data: Record<string, string> = {};
+      formData.forEach((value, key) => {
+        data[key] = value.toString();
+      });
+      console.log(data);
+      navigate('chat');
+      form.reset();
+    }
+  };
+
   override render() {
     return `
       <form class='profile-container'>

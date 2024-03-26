@@ -19,6 +19,7 @@ class ChatInput extends Block {
           name='message'
           value='{{ value }}'
           placeholder='Сообщение'
+          required
         />
       </div>
     `;

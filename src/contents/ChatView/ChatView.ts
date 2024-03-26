@@ -20,6 +20,11 @@ class ChatView extends Block {
       ChatInput: new ChatInput({
         value: props.value || '',
       }),
+      events: {
+        submit: (e: Event) => {
+          this.handleSubmit(e);
+        },
+      },
       chatMessages: [
         new ChatMessages({
           date: '12.03',
@@ -59,6 +64,19 @@ class ChatView extends Block {
       ],
     });
   }
+
+  handleSubmit = (event: Event) => {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const data: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      data[key] = value.toString();
+    });
+    console.log(data);
+    form.reset();
+  };
+
   override render() {
     return `
       <div class='chat-view'>
@@ -79,7 +97,9 @@ class ChatView extends Block {
         <form class='chat-view__footer'>
           <img src='../../icons/clip.svg' alt='clip' class='chat-view__footer__clip'>
           {{{ ChatInput }}}
-          <img src='../../icons/arrowRightIcon.svg' alt='arrow' class='chat-view__footer__arrow'>
+          <button type='submit' class='chat-view__footer__button'>
+            <img src='../../icons/arrowRightIcon.svg' alt='arrow' class='chat-view__footer__arrow'>
+          </button>
         </form>
       </div>
     `;

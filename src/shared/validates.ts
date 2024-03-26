@@ -30,6 +30,8 @@ type FieldName =
   | 'login'
   | 'email'
   | 'password'
+  | 'oldPassword'
+  | 'newPassword'
   | 'phone'
   | 'message';
 
@@ -44,6 +46,8 @@ export const validate = (
     login: validateLogin(value),
     email: validateEmail(value),
     password: validatePassword(value),
+    oldPassword: validatePassword(value),
+    newPassword: validatePassword(value),
     phone: validatePhone(value),
     message: validateMessage(value),
   };
