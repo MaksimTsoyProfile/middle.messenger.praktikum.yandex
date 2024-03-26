@@ -67,9 +67,9 @@ class ProfileContent extends Block {
         text: 'Изменить пароль',
       }),
       ExitLink: new Link({
-        page: '',
+        page: 'chat',
         text: 'Выйти',
-        danger: true,
+        color: 'danger',
       }),
       SaveButton: new Button({
         text: 'Сохранить',

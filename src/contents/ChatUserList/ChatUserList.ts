@@ -1,3 +1,4 @@
+import { Link } from '../../components';
 import { UserItem } from '../../components/UserItem';
 import Block from '../../shared/Block.ts';
 import { SearchInput } from '../../components/SearchInput';
@@ -12,6 +13,11 @@ class ChatUserList extends Block {
       ...props,
       SearchInput: new SearchInput({
         value: props.value,
+      }),
+      ProfileLink: new Link({
+        page: 'profile',
+        text: 'Профиль >',
+        color: 'secondary',
       }),
       lists: [
         new UserItem({
@@ -38,7 +44,9 @@ class ChatUserList extends Block {
   override render() {
     return `
       <div class='chat-user'>
-        <a class='chat-user__profile-link' href='#' page='profile'>Профиль ></a>
+        <div class='chat-user__profile-link'>
+        {{{ ProfileLink }}}
+        </div>
         <div class='chat-user__search'>
           {{{ SearchInput }}}
         </div>

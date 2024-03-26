@@ -47,7 +47,7 @@ export default class Block {
 
   _addEvents() {
     const { events = {} as EventHandlers } = this.props;
-    Object.keys(events).forEach((eventName) => {
+    Object.keys(events as EventHandlers).forEach((eventName) => {
       // Здесь я добавил обработку событий blur и submit так как у меня input и form обернут в div, альтернативой было напрямую переписать компоненты input и form, но я посчитал что это сломает мою папочную структуру
 
       const inputElement = this._element?.querySelector('input');
@@ -124,7 +124,7 @@ export default class Block {
   addAttributes() {
     const { attr = {} as Attributes } = this.props;
 
-    Object.entries(attr).forEach(([key, value]) => {
+    Object.entries(attr as Attributes).forEach(([key, value]) => {
       this._element?.setAttribute(key, value as string);
     });
   }

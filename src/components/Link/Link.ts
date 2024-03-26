@@ -5,7 +5,7 @@ type LinkProps = {
   href?: string;
   text: string;
   page: string;
-  danger?: boolean;
+  color?: string;
 };
 
 class Link extends Block {
@@ -14,7 +14,7 @@ class Link extends Block {
       href: props.href || '#',
       text: props.text,
       page: props.page,
-      danger: props.danger,
+      color: props.color || 'primary',
       events: {
         click: (event: Event) => {
           event.preventDefault();
@@ -26,7 +26,7 @@ class Link extends Block {
 
   override render() {
     return `
-      <a class='link {{#if danger}}danger{{/if}}' href='{{ href }}' page='{{page}}'>{{ text }}</a>
+      <a class='link {{color}}' href='{{ href }}' page='{{page}}'>{{ text }}</a>
     `;
   }
 }
