@@ -44,6 +44,7 @@ export default class Block {
   }
 
   _addEvents() {
+    // eslint-disable-next-line
     const { events = {} as any } = this.props;
     Object.keys(events).forEach((eventName) => {
       // Здесь я добавил обработку событий blur и submit так как у меня input и form обернут в div, альтернативой было напрямую переписать компоненты input и form, но я посчитал что это сломает мою папочную структуру
@@ -105,6 +106,7 @@ export default class Block {
   _getChildrenPropsAndProps(propsAndChildren: Props) {
     const children: Record<string, Block> = {};
     const props: Props = {};
+    // eslint-disable-next-line
     const lists: any = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
@@ -187,6 +189,7 @@ export default class Block {
   }
 
   _makePropsProxy(props: Props): Props {
+    // eslint-disable-next-line
     const self = this;
 
     return new Proxy(props, {
