@@ -1,3 +1,4 @@
+import { navigate } from '../../shared/navigate.ts';
 import Block from '../../shared/Block.ts';
 
 type LinkProps = {
@@ -14,6 +15,12 @@ class Link extends Block {
       text: props.text,
       page: props.page,
       danger: props.danger,
+      events: {
+        click: (event: Event) => {
+          event.preventDefault();
+          navigate(props.page);
+        },
+      },
     });
   }
 

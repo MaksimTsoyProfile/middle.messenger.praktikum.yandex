@@ -21,7 +21,7 @@ class Input extends Block {
       error: props.error,
       events: {
         blur: (e: Event) => {
-          this.handleBlur.bind(this.inputElement)(e);
+          this.handleBlur(e);
         },
       },
     });
@@ -31,11 +31,9 @@ class Input extends Block {
     this.setProps({ value: target.value });
     this.setProps({ error: validate(target.value, this.props.name) });
   };
-  inputElement = this.getContent()?.querySelector('input');
   override render() {
-    console.log(this);
     return `
-      <div class='input-container' tabindex="0">
+      <div class='input-container'>
         <label for='{{ name }}' class='input-container__label'>
           {{#if value}}
            {{ label }}
@@ -48,8 +46,9 @@ class Input extends Block {
           name='{{ name }}'
           placeholder='{{ label }}'
           value='{{ value }}'
+          required
         />
-        <span class='input-container__error'>
+        <span class='input-container__error error'>
           {{#if error}}
             {{ error }}
           {{/if}}

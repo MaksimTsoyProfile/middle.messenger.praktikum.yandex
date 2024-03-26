@@ -43,7 +43,7 @@ class InputField extends Block {
             value='{{ value }}'
             {{#if disabled}}disabled{{/if}}
           />
-          <span class='input-field-container__text__error'>
+          <span class='input-field-container__text__error error'>
             {{#if error}}
               {{ error }}
             {{/if}}

@@ -48,19 +48,17 @@ export default class Block {
   _addEvents() {
     const { events = {} as EventHandlers } = this.props;
     Object.keys(events).forEach((eventName) => {
-      // const inputElement = this._element?.querySelector('input');
-      // const formElement = this._element?.querySelector('form');
-      // if (inputElement && eventName === ('blur' || 'focus')) {
-      //   inputElement.addEventListener(eventName, events[eventName]);
-      // } else if (formElement && eventName === 'submit') {
-      //   formElement.addEventListener(eventName, events[eventName]);
-      // } else {
-      //   this._element?.addEventListener(eventName, events[eventName]);
-      // }
-      // if (inputElement) {
-      //   inputElement.addEventListener(eventName, events[eventName]);
-      // }
-      this._element?.addEventListener(eventName, events[eventName]);
+      // Здесь я добавил обработку событий blur и submit так как у меня input и form обернут в div, альтернативой было напрямую переписать компоненты input и form, но я посчитал что это сломает мою папочную структуру
+
+      const inputElement = this._element?.querySelector('input');
+      const formElement = this._element?.querySelector('form');
+      if (inputElement && eventName === ('blur' || 'focus')) {
+        inputElement.addEventListener(eventName, events[eventName]);
+      } else if (formElement && eventName === 'submit') {
+        formElement.addEventListener(eventName, events[eventName]);
+      } else {
+        this._element?.addEventListener(eventName, events[eventName]);
+      }
     });
   }
 

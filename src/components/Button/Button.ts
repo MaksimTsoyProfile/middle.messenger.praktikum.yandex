@@ -1,4 +1,5 @@
 import Block from '../../shared/Block.ts';
+import { navigate } from '../../shared/navigate.ts';
 
 type ButtonProps = {
   text: string;
@@ -12,11 +13,19 @@ class Button extends Block {
       text: props.text,
       page: props.page,
       type: props.type || 'button',
+      events: {
+        click: (event: Event) => {
+          if (props.type !== 'submit') {
+            event.preventDefault();
+            navigate(props.page);
+          }
+        },
+      },
     });
   }
   override render() {
     return `
-      <button class='button' page='{{ page }}' type='{{ type }}'>{{ text }}</button>
+      <button class='button' type='{{ type }}'>{{ text }}</button>
     `;
   }
 }

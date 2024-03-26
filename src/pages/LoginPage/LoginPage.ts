@@ -1,3 +1,4 @@
+import { navigate } from '../../shared/navigate.ts';
 import Block from '../../shared/Block.ts';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
@@ -22,16 +23,43 @@ class LoginPage extends Block {
       }),
       Button: new Button({
         type: 'submit',
-        text: 'Авторизоваться',
         page: 'chat',
+        text: 'Авторизоваться',
       }),
       Link: new Link({
         text: 'Нет аккаунта?',
         page: 'register',
       }),
+      events: {
+        submit: (e: Event) => {
+          this.handleSubmit(e);
+        },
+      },
     });
   }
+  handleSubmit = (event: Event) => {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    let isValid = true;
 
+    for (const errorElement of form.getElementsByClassName('error')) {
+      if (errorElement.textContent?.trim() !== '') {
+        isValid = false;
+        break;
+      }
+    }
+
+    if (isValid) {
+      const formData = new FormData(form);
+      const data: Record<string, string> = {};
+      formData.forEach((value, key) => {
+        data[key] = value.toString();
+      });
+      console.log(data);
+      navigate('chat');
+      form.reset();
+    }
+  };
   override render() {
     return `
       <div class='wrapper'>
