@@ -61,6 +61,16 @@ export default class Block {
     });
   }
 
+  _removeEvents() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { events = {} as any } = this.props;
+    Object.keys(events).forEach((eventName) => {
+      for (const eventListener of events[eventName]) {
+        this._element?.removeEventListener(eventName, eventListener);
+      }
+    });
+  }
+
   _registerEvents(eventBus: EventBus): void {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
@@ -154,6 +164,8 @@ export default class Block {
 
     const fragment = this._createDocumentElement('template');
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
+
+    this._removeEvents();
 
     Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
