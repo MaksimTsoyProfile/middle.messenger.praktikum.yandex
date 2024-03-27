@@ -16,6 +16,11 @@ type Options = {
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
+type HTTPMethod = (
+  url: string,
+  options?: OptionsWithoutMethod,
+) => Promise<unknown>;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function queryStringify(data: Record<string, any>) {
   if (!data || typeof data !== 'object') {
@@ -41,37 +46,37 @@ function queryStringify(data: Record<string, any>) {
 }
 
 class HTTPTransport {
-  get(url: string, options: OptionsWithoutMethod = {}) {
+  get: HTTPMethod = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.GET },
       options.timeout,
     );
-  }
+  };
 
-  put(url: string, options: OptionsWithoutMethod = {}) {
+  put: HTTPMethod = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.PUT },
       options.timeout,
     );
-  }
+  };
 
-  post(url: string, options: OptionsWithoutMethod = {}) {
+  post: HTTPMethod = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.POST },
       options.timeout,
     );
-  }
+  };
 
-  delete(url: string, options: OptionsWithoutMethod = {}) {
+  delete: HTTPMethod = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.DELETE },
       options.timeout,
     );
-  }
+  };
 
   request(url: string, options: Options, timeout = 5000) {
     const { method, data, headers } = options;
