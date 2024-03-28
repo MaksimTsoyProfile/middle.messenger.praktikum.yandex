@@ -1,12 +1,20 @@
+/* stylelint-disable-next-line */
 @import '../../assets/variables';
 
 .link {
   width: 100%;
-  color: $blue;
   background: $white;
   border: none;
   cursor: pointer;
   font-size: 14px;
+}
+
+.primary {
+  color: $blue;
+}
+
+.secondary {
+  color: $grey;
 }
 
 .danger {

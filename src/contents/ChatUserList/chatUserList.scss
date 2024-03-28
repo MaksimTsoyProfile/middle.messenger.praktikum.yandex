@@ -1,3 +1,4 @@
+/* stylelint-disable-next-line */
 @import '../../assets/variables';
 
 .chat-user {
@@ -7,17 +8,21 @@
   height: 100vh;
   padding: 20px 10px;
   overflow: scroll;
+
   &__profile-link {
     display: flex;
     justify-content: flex-end;
+    text-align: right;
     color: $grey;
     font-size: 14px;
     margin-bottom: 20px;
   }
+
   &__search {
     padding-bottom: 14px;
     border-bottom: 1px solid $lightGrey;
   }
+
   &__item {
     border-bottom: 1px solid $lightGrey;
   }

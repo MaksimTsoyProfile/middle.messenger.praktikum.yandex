@@ -1,7 +1,15 @@
+/* stylelint-disable-next-line */
 @import '../../assets/variables';
 
 .server-error-container {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
