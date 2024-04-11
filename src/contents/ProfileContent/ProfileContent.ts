@@ -1,4 +1,4 @@
-import { navigate } from '../../shared/navigate.ts';
+import router from '../../router.ts';
 import { Avatar } from '../../components/Avatar';
 import { Link } from '../../components/Link';
 import { Button } from '../../components/Button';
@@ -60,21 +60,21 @@ class ProfileContent extends Block {
         disabled: props.notEdit,
       }),
       EditProfileLink: new Link({
-        page: 'editProfile',
+        page: 'edit-profile',
         text: 'Изменить данные',
       }),
       EditPasswordLink: new Link({
-        page: 'editPassword',
+        page: 'edit-password',
         text: 'Изменить пароль',
       }),
       ExitLink: new Link({
-        page: 'chat',
+        page: 'messenger',
         text: 'Выйти',
         color: 'danger',
       }),
       SaveButton: new Button({
         text: 'Сохранить',
-        page: 'profile',
+        page: 'settings',
         type: 'submit',
       }),
       name: props.name,
@@ -106,7 +106,7 @@ class ProfileContent extends Block {
         data[key] = value.toString();
       });
       console.log(data);
-      navigate('chat');
+      router.go('messenger');
       form.reset();
     }
   };

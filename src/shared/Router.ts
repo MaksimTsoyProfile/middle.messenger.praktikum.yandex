@@ -1,9 +1,9 @@
 import Route from './Route.ts';
 
 class Router {
-  private routes: any;
+  private routes: Route[] = [];
   private history!: History;
-  private _currentRoute: any;
+  private _currentRoute: Route | null = null;
   private static __instance: Router | null;
 
   constructor() {
@@ -34,6 +34,7 @@ class Router {
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
     if (!route) {
+      this.go('error-404');
       return;
     }
     if (this._currentRoute) {
@@ -41,7 +42,7 @@ class Router {
     }
 
     this._currentRoute = route;
-    route.render(route, pathname);
+    route.render();
   }
 
   go(pathname: string) {

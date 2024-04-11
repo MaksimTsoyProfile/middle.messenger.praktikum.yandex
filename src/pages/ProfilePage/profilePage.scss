@@ -4,4 +4,6 @@
 .profile-page-container {
   margin: 40px auto;
   max-width: 510px;
+  display: flex;
+  flex-direction: column;
 }

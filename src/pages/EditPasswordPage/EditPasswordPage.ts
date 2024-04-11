@@ -1,22 +1,18 @@
-import { navigate } from '../../shared/navigate.ts';
+import router from '../../router.ts';
 import { Avatar } from '../../components/Avatar';
 import { InputField } from '../../components/InputField';
 import { Button } from '../../components/Button';
 import Block from '../../shared/Block.ts';
 
-type EditPasswordPageProps = {
-  src?: string;
-};
-
 class EditPasswordPage extends Block {
-  constructor(props: EditPasswordPageProps) {
+  constructor() {
     super({
       Avatar: new Avatar({
-        src: props.src || '',
+        src: '',
       }),
       SaveButton: new Button({
         text: 'Сохранить',
-        page: 'profile',
+        page: 'settings',
         type: 'submit',
       }),
       OldPasswordInput: new InputField({
@@ -72,7 +68,7 @@ class EditPasswordPage extends Block {
         data[key] = value.toString();
       });
       console.log(data);
-      navigate('chat');
+      router.go('messenger');
       form.reset();
     }
   };

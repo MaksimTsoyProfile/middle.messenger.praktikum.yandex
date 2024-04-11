@@ -1,4 +1,4 @@
-import { navigate } from '../../shared/navigate.ts';
+import router from '../../router.ts';
 import Block from '../../shared/Block.ts';
 
 type LinkProps = {
@@ -18,7 +18,7 @@ class Link extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          navigate(props.page);
+          router.go(props.page);
         },
       },
     });

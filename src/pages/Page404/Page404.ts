@@ -8,7 +8,7 @@ class Page404 extends Block {
         title: '404',
         description: 'Мы уже фиксим',
         linkText: 'Назад к чатам',
-        linkPage: 'login',
+        linkPage: '/',
       }),
     });
   }

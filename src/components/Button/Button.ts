@@ -1,5 +1,4 @@
 import Block from '../../shared/Block.ts';
-import { navigate } from '../../shared/navigate.ts';
 
 type ButtonProps = {
   text: string;
@@ -17,7 +16,6 @@ class Button extends Block {
         click: (event: Event) => {
           if (props.type !== 'submit') {
             event.preventDefault();
-            navigate(props.page);
           }
         },
       },

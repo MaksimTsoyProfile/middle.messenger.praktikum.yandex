@@ -1,4 +1,4 @@
-import { render, isEqual } from '../shared/utils.ts';
+import { renderDOM, isEqual } from './utils.ts';
 
 class Route {
   private _pathname: string;
@@ -33,7 +33,7 @@ class Route {
   render() {
     if (!this._block) {
       this._block = new this._blockClass();
-      render(this._block);
+      renderDOM(this._block);
       return;
     }
 

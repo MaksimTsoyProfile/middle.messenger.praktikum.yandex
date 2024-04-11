@@ -64,11 +64,11 @@ export default class Block {
   _removeEvents() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { events = {} as any } = this.props;
-    Object.keys(events).forEach((eventName) => {
-      for (const eventListener of events[eventName]) {
-        this._element?.removeEventListener(eventName, eventListener);
-      }
-    });
+    if (events) {
+      Object.keys(events).forEach((eventName) => {
+        this._element?.removeEventListener(eventName, events[eventName]);
+      });
+    }
   }
 
   _registerEvents(eventBus: EventBus): void {
@@ -231,7 +231,7 @@ export default class Block {
   show(): void {
     const content = this.getContent();
     if (content) {
-      content.style.display = 'block';
+      content.style.display = 'flex';
     }
   }
 

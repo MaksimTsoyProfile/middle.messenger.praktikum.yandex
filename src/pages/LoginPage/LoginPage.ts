@@ -1,4 +1,4 @@
-import { navigate } from '../../shared/navigate.ts';
+import router from '../../router.ts';
 import Block from '../../shared/Block.ts';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
@@ -28,7 +28,7 @@ class LoginPage extends Block {
       }),
       Link: new Link({
         text: 'Нет аккаунта?',
-        page: 'register',
+        page: 'sign-up',
       }),
       events: {
         submit: (e: Event) => {
@@ -56,7 +56,7 @@ class LoginPage extends Block {
         data[key] = value.toString();
       });
       console.log(data);
-      navigate('chat');
+      router.go('messenger');
       form.reset();
     }
   };
