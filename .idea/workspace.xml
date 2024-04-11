@@ -29,28 +29,30 @@
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/src/components/ChatInput",
+    "git-widget-placeholder": "sprint__2",
+    "last_opened_file_path": "/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/.stylelintrc.json",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/node_modules/stylelint",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/node_modules/prettier",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Handlebars/Mustache",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "settings.editor.selected.configurable": "configurable.stylesheets.stylelint",
+    "ts.external.directory.path": "/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/contents/ChatMessages" />
+      <recent name="$PROJECT_DIR$/src/components/Message" />
       <recent name="$PROJECT_DIR$/src/components/ChatInput" />
       <recent name="$PROJECT_DIR$/src/contents/ChatView" />
       <recent name="$PROJECT_DIR$/src/components/UserItem" />
-      <recent name="$PROJECT_DIR$/src/components/SearchInput" />
-      <recent name="$PROJECT_DIR$/src/contents/ChatUserList" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/public/icons" />
@@ -61,9 +63,12 @@
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d2396b2b-510e-4f89-b86a-2c2afdc6de87" name="Changes" comment="" />
+      <changelist id="427a81b6-8b67-4ec7-b66b-b4db629eb337" name="Changes" comment="" />
       <created>1709462390967</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -73,10 +78,22 @@
       <workItem from="1709472137465" duration="5358000" />
       <workItem from="1709478826144" duration="11437000" />
       <workItem from="1709532071055" duration="93465000" />
+      <workItem from="1711035557989" duration="105423000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
 </project>
