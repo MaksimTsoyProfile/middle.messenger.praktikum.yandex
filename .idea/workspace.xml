@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="427a81b6-8b67-4ec7-b66b-b4db629eb337" name="Changes" comment="" />
+    <list default="true" id="427a81b6-8b67-4ec7-b66b-b4db629eb337" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/shared/Route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/Router.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +34,7 @@
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "sprint__2",
+    "git-widget-placeholder": "sprint__3",
     "last_opened_file_path": "/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/.stylelintrc.json",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
