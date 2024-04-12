@@ -46,9 +46,15 @@ function queryStringify(data: Record<string, any>) {
 }
 
 class HTTPTransport {
+  private baseUrl: string;
+
+  constructor() {
+    this.baseUrl = 'https://ya-praktikum.tech/api/v2';
+  }
+
   get: HTTPMethod = (url, options = {}) => {
     return this.request(
-      url,
+      `${this.baseUrl}${url}`,
       { ...options, method: METHODS.GET },
       options.timeout,
     );
@@ -56,7 +62,7 @@ class HTTPTransport {
 
   put: HTTPMethod = (url, options = {}) => {
     return this.request(
-      url,
+      `${this.baseUrl}${url}`,
       { ...options, method: METHODS.PUT },
       options.timeout,
     );
@@ -64,7 +70,7 @@ class HTTPTransport {
 
   post: HTTPMethod = (url, options = {}) => {
     return this.request(
-      url,
+      `${this.baseUrl}${url}`,
       { ...options, method: METHODS.POST },
       options.timeout,
     );
@@ -72,7 +78,7 @@ class HTTPTransport {
 
   delete: HTTPMethod = (url, options = {}) => {
     return this.request(
-      url,
+      `${this.baseUrl}${url}`,
       { ...options, method: METHODS.DELETE },
       options.timeout,
     );
@@ -104,8 +110,10 @@ class HTTPTransport {
       xhr.ontimeout = reject;
       if (method === METHODS.GET || !data) {
         xhr.send();
-      } else {
+      } else if (data instanceof FormData) {
         xhr.send(data);
+      } else {
+        xhr.send(JSON.stringify(data));
       }
     });
   }

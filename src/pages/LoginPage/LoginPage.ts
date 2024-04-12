@@ -1,3 +1,4 @@
+import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
 import Block from '../../shared/Block.ts';
 import { Input } from '../../components/Input';
@@ -37,7 +38,9 @@ class LoginPage extends Block {
       },
     });
   }
+
   handleSubmit = (event: Event) => {
+    const userController = new UserController();
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     let isValid = true;
@@ -55,7 +58,9 @@ class LoginPage extends Block {
       formData.forEach((value, key) => {
         data[key] = value.toString();
       });
-      console.log(data);
+      userController.signIn(data).then((resp) => {
+        console.log('resp', resp, data);
+      });
       router.go('messenger');
       form.reset();
     }

@@ -5,25 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="427a81b6-8b67-4ec7-b66b-b4db629eb337" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/router.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/AuthApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/UserController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/Button.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Link/Link.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Link/Link.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contents/ChatUserList/ChatUserList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/contents/ChatUserList/ChatUserList.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contents/ProfileContent/ProfileContent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/contents/ProfileContent/ProfileContent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/EditPasswordPage/EditPasswordPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/EditPasswordPage/EditPasswordPage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/EditProfilePage/editProfilePage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/EditProfilePage/editProfilePage.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/LoginPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/LoginPage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Page404/Page404.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Page404/Page404.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Page500/Page500.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Page500/Page500.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProfilePage/profilePage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfilePage/profilePage.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/RegisterPage/RegisterPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RegisterPage/RegisterPage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/Block.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Block.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/Route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/Router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/navigate.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/HTTPTransport.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/HTTPTransport.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
