@@ -12,7 +12,7 @@ class EditPasswordPage extends Block {
       }),
       SaveButton: new Button({
         text: 'Сохранить',
-        page: 'settings',
+        page: '/settings',
         type: 'submit',
       }),
       OldPasswordInput: new InputField({
@@ -68,7 +68,7 @@ class EditPasswordPage extends Block {
         data[key] = value.toString();
       });
       console.log(data);
-      router.go('messenger');
+      router.go('/messenger');
       form.reset();
     }
   };

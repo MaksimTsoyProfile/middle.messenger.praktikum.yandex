@@ -60,21 +60,21 @@ class ProfileContent extends Block {
         disabled: props.notEdit,
       }),
       EditProfileLink: new Link({
-        page: 'edit-profile',
+        page: '/edit-profile',
         text: 'Изменить данные',
       }),
       EditPasswordLink: new Link({
-        page: 'edit-password',
+        page: '/edit-password',
         text: 'Изменить пароль',
       }),
       ExitLink: new Link({
-        page: 'messenger',
+        page: '/messenger',
         text: 'Выйти',
         color: 'danger',
       }),
       SaveButton: new Button({
         text: 'Сохранить',
-        page: 'settings',
+        page: '/settings',
         type: 'submit',
       }),
       name: props.name,
@@ -106,7 +106,7 @@ class ProfileContent extends Block {
         data[key] = value.toString();
       });
       console.log(data);
-      router.go('messenger');
+      router.go('/messenger');
       form.reset();
     }
   };

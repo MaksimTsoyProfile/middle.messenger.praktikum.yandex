@@ -1,3 +1,4 @@
+import { RegisterData } from '../../api/AuthApi.ts';
 import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
 import Block from '../../shared/Block.ts';
@@ -54,7 +55,7 @@ class RegisterPage extends Block {
       Button: new Button({
         type: 'submit',
         text: 'Зарегистрироваться',
-        page: 'chat',
+        page: '/chat',
       }),
       Link: new Link({
         text: 'Войти',
@@ -87,11 +88,14 @@ class RegisterPage extends Block {
       formData.forEach((value, key) => {
         data[key] = value.toString();
       });
-      userController.signUp(data).then((resp) => {
-        console.log('resp', resp, data);
+      userController.signUp(data as RegisterData).then((response) => {
+        if (response instanceof XMLHttpRequest && response.status === 200) {
+          router.go('/messenger');
+          form.reset();
+        } else {
+          alert('Возникла ошибка');
+        }
       });
-      router.go('messenger');
-      form.reset();
     }
   };
 

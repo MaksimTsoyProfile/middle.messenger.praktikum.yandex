@@ -15,7 +15,7 @@ class ChatUserList extends Block {
         value: props.value,
       }),
       ProfileLink: new Link({
-        page: 'settings',
+        page: '/settings',
         text: 'Профиль >',
         color: 'secondary',
       }),

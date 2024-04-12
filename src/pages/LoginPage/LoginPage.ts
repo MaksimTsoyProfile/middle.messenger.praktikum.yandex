@@ -1,3 +1,4 @@
+import { LoginData } from '../../api/AuthApi.ts';
 import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
 import Block from '../../shared/Block.ts';
@@ -24,12 +25,12 @@ class LoginPage extends Block {
       }),
       Button: new Button({
         type: 'submit',
-        page: 'chat',
+        page: '/chat',
         text: 'Авторизоваться',
       }),
       Link: new Link({
         text: 'Нет аккаунта?',
-        page: 'sign-up',
+        page: '/sign-up',
       }),
       events: {
         submit: (e: Event) => {
@@ -58,11 +59,14 @@ class LoginPage extends Block {
       formData.forEach((value, key) => {
         data[key] = value.toString();
       });
-      userController.signIn(data).then((resp) => {
-        console.log('resp', resp, data);
+      userController.signIn(data as LoginData).then((response) => {
+        if (response instanceof XMLHttpRequest && response.status === 200) {
+          router.go('/messenger');
+          form.reset();
+        } else {
+          alert('Возникла ошибка');
+        }
       });
-      router.go('messenger');
-      form.reset();
     }
   };
   override render() {

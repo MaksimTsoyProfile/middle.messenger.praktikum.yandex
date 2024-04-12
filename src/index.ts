@@ -12,11 +12,11 @@ import {
 
 router
   .use('/', LoginPage)
-  .use('sign-up', RegisterPage)
-  .use('settings', ProfilePage)
-  .use('messenger', ChatPage)
-  .use('edit-password', EditPasswordPage)
-  .use('error-404', Page404)
-  .use('error-500', Page500)
-  .use('edit-profile', EditProfilePage)
+  .use('/sign-up', RegisterPage)
+  .use('/settings', ProfilePage)
+  .use('/messenger', ChatPage)
+  .use('/edit-password', EditPasswordPage)
+  .use('/error-404', Page404)
+  .use('/error-500', Page500)
+  .use('/edit-profile', EditProfilePage)
   .start();
