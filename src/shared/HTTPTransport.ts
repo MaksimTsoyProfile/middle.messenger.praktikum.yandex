@@ -23,10 +23,6 @@ type HTTPMethod = (
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function queryStringify(data: Record<string, any>) {
-  if (!data || typeof data !== 'object') {
-    throw new Error('Invalid data object provided');
-  }
-
   const params = [];
 
   for (const key in data) {
@@ -100,7 +96,7 @@ class HTTPTransport {
           xhr.setRequestHeader(key, value);
         }
       }
-
+      xhr.withCredentials = true;
       xhr.onload = function () {
         resolve(xhr);
       };

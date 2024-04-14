@@ -31,8 +31,6 @@ class UserController {
       const response = await authApi.getUser();
       if (response instanceof XMLHttpRequest && response.status === 200) {
         const data = JSON.parse(response.response);
-        data.avatar = data.avatar.replaceAll('/', '%2F');
-        data.avatar = `https://ya-praktikum.tech/api/v2/resources/${data.avatar}`;
         store.set('user', data);
       }
       return response;

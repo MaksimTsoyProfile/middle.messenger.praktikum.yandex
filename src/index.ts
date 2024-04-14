@@ -15,7 +15,7 @@ router
   .use('/', withUser(LoginPage))
   .use('/sign-up', RegisterPage)
   .use('/settings', ProfilePage)
-  .use('/messenger', ChatPage)
+  .use('/messenger', withUser(ChatPage))
   .use('/edit-password', EditPasswordPage)
   .use('/error-404', Page404)
   .use('/error-500', Page500)

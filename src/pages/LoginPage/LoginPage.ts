@@ -38,11 +38,16 @@ class LoginPage extends Block {
         },
       },
     });
+    const userController = new UserController();
+    userController.getUser().then((response) => {
+      if (response instanceof XMLHttpRequest && response.status === 200) {
+        router.go('/messenger');
+      }
+    });
   }
 
   componentDidMount() {
     const userController = new UserController();
-    console.log('userController', userController);
     userController.getUser().then((response) => {
       if (response instanceof XMLHttpRequest && response.status === 200) {
         router.go('/messenger');
