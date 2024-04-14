@@ -1,7 +1,7 @@
 import EventBus from './EventBus';
 import Handlebars from 'handlebars';
 
-type Props = Record<string, unknown>;
+export type Props = Record<string, unknown>;
 
 type Attributes = Record<string, string>;
 

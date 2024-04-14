@@ -1,3 +1,4 @@
+import { withUser } from './shared/connect.ts';
 import router from './router.ts';
 import {
   LoginPage,
@@ -11,7 +12,7 @@ import {
 } from './pages';
 
 router
-  .use('/', LoginPage)
+  .use('/', withUser(LoginPage))
   .use('/sign-up', RegisterPage)
   .use('/settings', ProfilePage)
   .use('/messenger', ChatPage)

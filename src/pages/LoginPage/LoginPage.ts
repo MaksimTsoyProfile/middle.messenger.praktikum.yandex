@@ -40,6 +40,16 @@ class LoginPage extends Block {
     });
   }
 
+  componentDidMount() {
+    const userController = new UserController();
+    console.log('userController', userController);
+    userController.getUser().then((response) => {
+      if (response instanceof XMLHttpRequest && response.status === 200) {
+        router.go('/messenger');
+      }
+    });
+  }
+
   handleSubmit = (event: Event) => {
     const userController = new UserController();
     event.preventDefault();

@@ -32,6 +32,10 @@ class AuthApi {
   getUser() {
     return httpClient.get(`/auth/user`, {});
   }
+
+  logout() {
+    return httpClient.post(`/auth/logout`, {});
+  }
 }
 
 export default AuthApi;

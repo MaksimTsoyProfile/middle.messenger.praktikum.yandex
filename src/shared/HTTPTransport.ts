@@ -95,10 +95,6 @@ class HTTPTransport {
         xhr.open(method, url);
       }
 
-      if (typeof data === 'object' && !(data instanceof FormData)) {
-        xhr.setRequestHeader('Content-Type', 'application/json');
-      }
-
       if (headers) {
         for (const [key, value] of Object.entries(headers)) {
           xhr.setRequestHeader(key, value);
@@ -117,6 +113,7 @@ class HTTPTransport {
       } else if (data instanceof FormData) {
         xhr.send(data);
       } else {
+        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(data));
       }
     });
