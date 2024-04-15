@@ -21,10 +21,10 @@ class ChatPage extends Block {
       if (response instanceof XMLHttpRequest && response.status === 401) {
         router.go('/');
       } else {
-        this.children.ChatView.setProps({
-          name: store.getState().user.login,
-          src: store.getState().user.avatar,
-        });
+        // this.children.ChatView.setProps({
+        //   name: store.getState().user.login,
+        //   src: store.getState().user.avatar,
+        // });
       }
     });
   }

@@ -1,3 +1,4 @@
+import { withUser } from '../../shared/connect.ts';
 import { Message } from '../../components/Message';
 import { Avatar } from '../../components/Avatar';
 import { ChatInput } from '../../components/ChatInput';
@@ -5,7 +6,7 @@ import { ChatMessages } from '../../contents/ChatMessages';
 import Block from '../../shared/Block.ts';
 
 type ChatViewProps = {
-  name: string;
+  login: string;
   src: string;
   value?: string;
 };
@@ -13,7 +14,7 @@ type ChatViewProps = {
 class ChatView extends Block {
   constructor(props: ChatViewProps) {
     super({
-      name: props.name,
+      login: props.login,
       Avatar: new Avatar({
         src: props.src || '',
       }),
@@ -106,4 +107,4 @@ class ChatView extends Block {
   }
 }
 
-export default ChatView;
+export default withUser(ChatView);

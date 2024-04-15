@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="427a81b6-8b67-4ec7-b66b-b4db629eb337" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ChatPage/ChatPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ChatPage/ChatPage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contents/ChatView/ChatView.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/contents/ChatView/ChatView.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/connect.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/connect.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

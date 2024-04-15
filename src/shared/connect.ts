@@ -21,4 +21,4 @@ const connect =
     };
   };
 
-export const withUser = connect((state) => ({ user: state.user }));
+export const withUser = connect((state) => ({ ...state.user }));
