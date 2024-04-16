@@ -6,14 +6,13 @@ type LinkProps = {
   text: string;
   page: string;
   color?: string;
+  events?: unknown;
 };
 
 class Link extends Block {
   constructor(props: LinkProps) {
     super({
       href: props.href || '#',
-      text: props.text,
-      page: props.page,
       color: props.color || 'primary',
       events: {
         click: (event: Event) => {
@@ -21,6 +20,7 @@ class Link extends Block {
           router.go(props.page);
         },
       },
+      ...props,
     });
   }
 

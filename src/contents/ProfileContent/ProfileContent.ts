@@ -1,3 +1,4 @@
+import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
 import { Avatar } from '../../components/Avatar';
 import { Link } from '../../components/Link';
@@ -71,6 +72,11 @@ class ProfileContent extends Block {
         page: '/messenger',
         text: 'Выйти',
         color: 'danger',
+        events: {
+          click: () => {
+            this.handleExit();
+          },
+        },
       }),
       SaveButton: new Button({
         text: 'Сохранить',
@@ -86,6 +92,15 @@ class ProfileContent extends Block {
       },
     });
   }
+
+  handleExit = () => {
+    const userController = new UserController();
+    userController.logout().then((response) => {
+      if (response instanceof XMLHttpRequest && response.status === 200) {
+        router.go('/');
+      }
+    });
+  };
 
   handleSubmit = (event: Event) => {
     event.preventDefault();

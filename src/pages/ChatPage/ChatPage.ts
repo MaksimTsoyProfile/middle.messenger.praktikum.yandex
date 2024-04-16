@@ -1,3 +1,4 @@
+import { withUser } from '../../shared/connect.ts';
 import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
 import store from '../../shared/Store.ts';
@@ -11,21 +12,9 @@ class ChatPage extends Block {
         value: '',
       }),
       ChatView: new ChatView({
-        name: store.getState().user.login,
+        login: store.getState().user.login,
         src: store.getState().user.avatar,
       }),
-    });
-
-    const userController = new UserController();
-    userController.getUser().then((response) => {
-      if (response instanceof XMLHttpRequest && response.status === 401) {
-        router.go('/');
-      } else {
-        // this.children.ChatView.setProps({
-        //   name: store.getState().user.login,
-        //   src: store.getState().user.avatar,
-        // });
-      }
     });
   }
 
@@ -39,7 +28,6 @@ class ChatPage extends Block {
   }
 
   override render() {
-    console.log(store.getState().user);
     return `
       <main class='chat-container'>
         <div class='chat-container__user-list'>
@@ -53,4 +41,4 @@ class ChatPage extends Block {
   }
 }
 
-export default ChatPage;
+export default withUser(ChatPage);

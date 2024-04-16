@@ -86,7 +86,7 @@ class ChatView extends Block {
             {{{ Avatar }}}
           </div>
           <h3 class='chat-view__header__name'>
-            {{ name }}
+            {{ login }}
           </h3>
           <div class='chat-view__header__dots'>
             <img src='../../icons/vertical-dots.svg' alt='dots'>

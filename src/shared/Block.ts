@@ -85,6 +85,7 @@ export default class Block {
 
   init(): void {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
   _componentDidMount(): void {
