@@ -1,3 +1,4 @@
+import { User } from '../shared/Store.ts';
 import HTTPTransport from '../shared/HTTPTransport.ts';
 
 const httpClient = new HTTPTransport();
@@ -29,12 +30,18 @@ class AuthApi {
     });
   }
 
+  logout() {
+    return httpClient.post(`/auth/logout`, {});
+  }
+
   getUser() {
     return httpClient.get(`/auth/user`, {});
   }
 
-  logout() {
-    return httpClient.post(`/auth/logout`, {});
+  editUser(data: User) {
+    return httpClient.put('/user/profile', {
+      data: data,
+    });
   }
 }
 

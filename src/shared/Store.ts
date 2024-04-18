@@ -8,7 +8,7 @@ export type Indexed<T = any> = {
   [key in string]: T;
 };
 
-type User = {
+export type User = {
   id: number;
   avatar: string;
   email: string;
@@ -19,7 +19,7 @@ type User = {
   phone: string;
 };
 
-type Chat = {
+export type Chat = {
   id: number;
   title: string;
   avatar: string;

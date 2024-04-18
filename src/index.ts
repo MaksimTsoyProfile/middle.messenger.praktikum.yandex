@@ -14,7 +14,7 @@ import {
 router
   .use('/', withUser(LoginPage))
   .use('/sign-up', RegisterPage)
-  .use('/settings', ProfilePage)
+  .use('/settings', withUser(ProfilePage))
   .use('/messenger', withUser(ChatPage))
   .use('/edit-password', EditPasswordPage)
   .use('/error-404', Page404)

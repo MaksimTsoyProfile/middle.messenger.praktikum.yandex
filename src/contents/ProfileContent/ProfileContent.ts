@@ -1,3 +1,6 @@
+import { User } from '../../shared/Store.ts';
+import userController from '../../controllers/UserController.ts';
+import { withUser } from '../../shared/connect.ts';
 import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
 import { Avatar } from '../../components/Avatar';
@@ -8,55 +11,62 @@ import Block from '../../shared/Block.ts';
 
 type ProfileContentProps = {
   name?: string;
-  src?: string;
+  avatar?: string;
   notEdit: boolean;
+  email: string;
+  login: string;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  phone: string;
 };
 
 class ProfileContent extends Block {
   constructor(props: ProfileContentProps) {
+    console.log(props);
     super({
       Avatar: new Avatar({
-        src: props.src || '',
+        src: props.avatar || '',
       }),
       InputFieldEmail: new InputField({
         name: 'email',
         type: 'email',
-        value: 'pochta@yandex.ru',
+        value: props.email,
         label: 'Почта',
         disabled: props.notEdit,
       }),
       InputFieldLogin: new InputField({
         name: 'login',
         type: 'text',
-        value: 'Ivanov',
+        value: props.login,
         label: 'Логин',
         disabled: props.notEdit,
       }),
       InputFieldFirstName: new InputField({
         name: 'first_name',
         type: 'text',
-        value: 'Иван',
+        value: props.first_name,
         label: 'Имя',
         disabled: props.notEdit,
       }),
       InputFieldSecondName: new InputField({
         name: 'second_name',
         type: 'text',
-        value: 'Иванов',
+        value: props.second_name,
         label: 'Фамилия',
         disabled: props.notEdit,
       }),
       InputFieldDisplayName: new InputField({
         name: 'display_name',
         type: 'text',
-        value: 'Иван',
+        value: props.display_name,
         label: 'Имя в чате',
         disabled: props.notEdit,
       }),
       InputFieldPhone: new InputField({
         name: 'phone',
         type: 'text',
-        value: '+7 (909) 967 30 30',
+        value: props.phone,
         label: 'Телефон',
         disabled: props.notEdit,
       }),
@@ -120,9 +130,15 @@ class ProfileContent extends Block {
       formData.forEach((value, key) => {
         data[key] = value.toString();
       });
-      console.log(data);
-      router.go('/messenger');
-      form.reset();
+      const userController = new UserController();
+      userController.editProfile(data as User).then((response) => {
+        if (response instanceof XMLHttpRequest && response.status === 200) {
+          router.go('/messenger');
+          form.reset();
+        } else {
+          alert('Возникла ошибка');
+        }
+      });
     }
   };
 
@@ -177,4 +193,4 @@ class ProfileContent extends Block {
   }
 }
 
-export default ProfileContent;
+export default withUser(ProfileContent);
