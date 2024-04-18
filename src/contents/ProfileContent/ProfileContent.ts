@@ -1,5 +1,4 @@
-import { User } from '../../shared/Store.ts';
-import userController from '../../controllers/UserController.ts';
+import { ProfileData } from '../../api/AuthApi.ts';
 import { withUser } from '../../shared/connect.ts';
 import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
@@ -131,7 +130,7 @@ class ProfileContent extends Block {
         data[key] = value.toString();
       });
       const userController = new UserController();
-      userController.editProfile(data as User).then((response) => {
+      userController.editProfile(data as ProfileData).then((response) => {
         if (response instanceof XMLHttpRequest && response.status === 200) {
           router.go('/messenger');
           form.reset();

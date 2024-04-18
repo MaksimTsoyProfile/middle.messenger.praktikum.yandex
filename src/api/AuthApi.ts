@@ -1,4 +1,3 @@
-import { User } from '../shared/Store.ts';
 import HTTPTransport from '../shared/HTTPTransport.ts';
 
 const httpClient = new HTTPTransport();
@@ -15,6 +14,15 @@ export type RegisterData = {
 export type LoginData = {
   login: string;
   password: string;
+};
+
+export type ProfileData = {
+  email: string;
+  login: string;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  phone: string;
 };
 
 class AuthApi {
@@ -38,7 +46,7 @@ class AuthApi {
     return httpClient.get(`/auth/user`, {});
   }
 
-  editUser(data: User) {
+  editUser(data: ProfileData) {
     return httpClient.put('/user/profile', {
       data: data,
     });

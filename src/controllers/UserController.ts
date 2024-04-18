@@ -1,5 +1,9 @@
-import AuthApi, { LoginData, RegisterData } from '../api/AuthApi.ts';
-import store, { User } from '../shared/Store.ts';
+import AuthApi, {
+  LoginData,
+  ProfileData,
+  RegisterData,
+} from '../api/AuthApi.ts';
+import store from '../shared/Store.ts';
 
 const authApi = new AuthApi();
 
@@ -40,7 +44,7 @@ class UserController {
     }
   }
 
-  public async editProfile(userdata: User) {
+  public async editProfile(userdata: ProfileData) {
     try {
       const response = await authApi.editUser(userdata);
       if (response instanceof XMLHttpRequest && response.status === 200) {
