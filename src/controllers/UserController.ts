@@ -1,5 +1,6 @@
 import AuthApi, {
   LoginData,
+  PasswordsData,
   ProfileData,
   RegisterData,
 } from '../api/AuthApi.ts';
@@ -52,6 +53,26 @@ class UserController {
         store.set('user', data);
       }
       this.getUser();
+      return response;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  public async editAvatar(formData: FormData) {
+    try {
+      await authApi.editAvatar(formData);
+      this.getUser();
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  public async editPassword(passwordsData: PasswordsData) {
+    try {
+      const response = await authApi.editPassword(passwordsData);
       return response;
     } catch (error) {
       console.log(error);

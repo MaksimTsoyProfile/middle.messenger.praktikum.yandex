@@ -35,6 +35,7 @@ export type Chat = {
 type StateType = {
   user: User;
   chats: Chat[];
+  selectedChat: Chat | null;
   [key: string]: unknown;
 };
 
@@ -76,6 +77,7 @@ const initialState = {
     phone: '',
   },
   chats: [],
+  selectedChat: null,
 };
 
 class Store extends EventBus {

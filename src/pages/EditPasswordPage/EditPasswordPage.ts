@@ -1,3 +1,5 @@
+import { PasswordsData } from '../../api/AuthApi.ts';
+import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
 import { Avatar } from '../../components/Avatar';
 import { InputField } from '../../components/InputField';
@@ -18,21 +20,21 @@ class EditPasswordPage extends Block {
       OldPasswordInput: new InputField({
         name: 'oldPassword',
         type: 'password',
-        value: 'password',
+        value: '',
         label: 'Старый пароль',
         disabled: false,
       }),
       NewPasswordInput: new InputField({
         name: 'newPassword',
         type: 'password',
-        value: 'password',
+        value: '',
         label: 'Новый пароль',
         disabled: false,
       }),
       ReplacePasswordInput: new InputField({
         name: 'newPassword',
         type: 'password',
-        value: 'password',
+        value: '',
         label: 'Повторите новый пароль',
         disabled: false,
       }),
@@ -46,6 +48,7 @@ class EditPasswordPage extends Block {
 
   handleSubmit = (event: Event) => {
     event.preventDefault();
+    const userController = new UserController();
     const form = event.target as HTMLFormElement;
     let isValid = true;
 
@@ -67,9 +70,14 @@ class EditPasswordPage extends Block {
       formData.forEach((value, key) => {
         data[key] = value.toString();
       });
-      console.log(data);
-      router.go('/messenger');
-      form.reset();
+      userController.editPassword(data as PasswordsData).then((response) => {
+        if (response instanceof XMLHttpRequest && response.status === 200) {
+          router.go('/messenger');
+          form.reset();
+        } else {
+          alert('Возникла ошибка');
+        }
+      });
     }
   };
 

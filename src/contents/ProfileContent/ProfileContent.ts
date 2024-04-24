@@ -1,3 +1,4 @@
+import { config } from '../../shared/config.ts';
 import { ProfileData } from '../../api/AuthApi.ts';
 import { withUser } from '../../shared/connect.ts';
 import UserController from '../../controllers/UserController.ts';
@@ -22,10 +23,15 @@ type ProfileContentProps = {
 
 class ProfileContent extends Block {
   constructor(props: ProfileContentProps) {
-    console.log(props);
+    console.log('props', props);
     super({
       Avatar: new Avatar({
-        src: props.avatar || '',
+        src: props.avatar ? `${config.baseUrl}/resources${props.avatar}` : '',
+        events: {
+          click: () => {
+            this.handleEditAvatar();
+          },
+        },
       }),
       InputFieldEmail: new InputField({
         name: 'email',
@@ -139,6 +145,25 @@ class ProfileContent extends Block {
         }
       });
     }
+  };
+
+  handleEditAvatar = () => {
+    const userController = new UserController();
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+
+    fileInput.onchange = async (e: Event) => {
+      if (
+        e.currentTarget instanceof HTMLInputElement &&
+        e.currentTarget.files
+      ) {
+        const formData = new FormData();
+        formData.append('avatar', e.currentTarget.files[0]);
+        await userController.editAvatar(formData);
+      }
+    };
+
+    fileInput.click();
   };
 
   override render() {

@@ -25,6 +25,11 @@ export type ProfileData = {
   phone: string;
 };
 
+export type PasswordsData = {
+  oldPassword: string;
+  newPassword: string;
+};
+
 class AuthApi {
   signIn(data: LoginData) {
     return httpClient.post(`/auth/signin`, {
@@ -48,6 +53,18 @@ class AuthApi {
 
   editUser(data: ProfileData) {
     return httpClient.put('/user/profile', {
+      data: data,
+    });
+  }
+
+  editPassword(data: PasswordsData) {
+    return httpClient.put('/user/password', {
+      data: data,
+    });
+  }
+
+  editAvatar(data: FormData) {
+    return httpClient.put('/user/profile/avatar', {
       data: data,
     });
   }
