@@ -110,8 +110,7 @@ export default class Block {
     this._render();
   }
 
-  componentDidUpdate(oldProps?: Props, newProps?: Partial<Props>): boolean {
-    this.props = { ...oldProps, ...newProps };
+  componentDidUpdate(): boolean {
     return true;
   }
 
