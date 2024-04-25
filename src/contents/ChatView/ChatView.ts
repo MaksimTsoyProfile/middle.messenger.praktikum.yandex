@@ -1,3 +1,4 @@
+import { config } from '../../shared/config.ts';
 import { withUser } from '../../shared/connect.ts';
 import { Message } from '../../components/Message';
 import { Avatar } from '../../components/Avatar';
@@ -7,19 +8,26 @@ import Block from '../../shared/Block.ts';
 
 type ChatViewProps = {
   login: string;
-  src: string;
-  value?: string;
+  avatar: string;
+  name?: string;
+  notEdit: boolean;
+  email: string;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  phone: string;
 };
 
 class ChatView extends Block {
   constructor(props: ChatViewProps) {
+    console.log('props', props);
     super({
       login: props.login,
       Avatar: new Avatar({
-        src: props.src || '',
+        src: props.avatar ? `${config.baseUrl}/resources${props.avatar}` : '',
       }),
       ChatInput: new ChatInput({
-        value: props.value || '',
+        value: '',
       }),
       events: {
         submit: (e: Event) => {

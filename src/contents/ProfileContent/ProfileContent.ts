@@ -23,7 +23,7 @@ type ProfileContentProps = {
 
 class ProfileContent extends Block {
   constructor(props: ProfileContentProps) {
-    console.log('props', props);
+    console.log('props2', props);
     super({
       Avatar: new Avatar({
         src: props.avatar ? `${config.baseUrl}/resources${props.avatar}` : '',
