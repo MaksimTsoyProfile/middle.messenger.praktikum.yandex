@@ -1,4 +1,3 @@
-import { config } from '../shared/config.ts';
 import HTTPTransport from '../shared/HTTPTransport.ts';
 
 export type ChatUsersData = {
@@ -9,34 +8,32 @@ export type ChatUsersData = {
 const httpClient = new HTTPTransport();
 
 class ChatApi {
-  chatsURL: string = `${config.baseUrl}/chats`;
-
   getToken(chatId: number) {
-    return httpClient.post(`${this.chatsURL}/token/${chatId}`, {});
+    return httpClient.post(`/chats/token/${chatId}`, {});
   }
 
   getChats() {
-    return httpClient.get(`${this.chatsURL}`, {});
+    return httpClient.get('/chats', {});
   }
 
   getChatUsers(chatId: number) {
-    return httpClient.get(`${this.chatsURL}/${chatId}/users`, {});
+    return httpClient.get(`/chats/${chatId}/users`, {});
   }
 
   createChat(title: string) {
-    return httpClient.post(`${this.chatsURL}`, {
+    return httpClient.post('/chats', {
       body: { title },
     });
   }
 
   addUserToChat(data: ChatUsersData) {
-    return httpClient.put(`${this.chatsURL}/users`, {
+    return httpClient.put('/chats/users', {
       body: data,
     });
   }
 
   deleteChat(chatId: number) {
-    return httpClient.delete(`${this.chatsURL}`, {
+    return httpClient.delete('/chats', {
       body: { chatId },
     });
   }

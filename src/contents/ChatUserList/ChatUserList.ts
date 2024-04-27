@@ -1,10 +1,12 @@
-import { Link } from '../../components';
+import { withChats } from '../../shared/connect.ts';
+import { Button, Link } from '../../components';
 import { UserItem } from '../../components/UserItem';
 import Block from '../../shared/Block.ts';
 import { SearchInput } from '../../components/SearchInput';
 
 type ChatUserListProps = {
   value: string;
+  setAddUserOpen: (value: boolean) => unknown;
 };
 
 class ChatUserList extends Block {
@@ -18,6 +20,15 @@ class ChatUserList extends Block {
         page: '/settings',
         text: 'Профиль >',
         color: 'secondary',
+      }),
+      AddUserButton: new Button({
+        type: 'button',
+        text: 'Добавить пользователя',
+        events: {
+          click: () => {
+            props.setAddUserOpen(true);
+          },
+        },
       }),
       lists: [
         new UserItem({
@@ -41,6 +52,7 @@ class ChatUserList extends Block {
       ],
     });
   }
+
   override render() {
     return `
       <div class='chat-user'>
@@ -50,10 +62,13 @@ class ChatUserList extends Block {
         <div class='chat-user__search'>
           {{{ SearchInput }}}
         </div>
+        <div class='chat-user__item'>
+          {{{ AddUserButton }}}
+        </div>
         {{{ lists }}}
       </div>
     `;
   }
 }
 
-export default ChatUserList;
+export default withChats(ChatUserList);

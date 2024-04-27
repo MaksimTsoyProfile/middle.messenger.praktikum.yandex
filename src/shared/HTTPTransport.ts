@@ -1,3 +1,5 @@
+import { config } from '../shared/config.ts';
+
 const enum METHODS {
   GET = 'GET',
   POST = 'POST',
@@ -45,7 +47,7 @@ class HTTPTransport {
   private baseUrl: string;
 
   constructor() {
-    this.baseUrl = 'https://ya-praktikum.tech/api/v2';
+    this.baseUrl = config.baseUrl;
   }
 
   get: HTTPMethod = (url, options = {}) => {

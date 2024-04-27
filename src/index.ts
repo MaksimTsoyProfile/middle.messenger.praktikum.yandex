@@ -1,4 +1,4 @@
-import { withUser } from './shared/connect.ts';
+import { withChats, withUser } from './shared/connect.ts';
 import router from './router.ts';
 import {
   LoginPage,
@@ -15,7 +15,7 @@ router
   .use('/', withUser(LoginPage))
   .use('/sign-up', RegisterPage)
   .use('/settings', withUser(ProfilePage))
-  .use('/messenger', withUser(ChatPage))
+  .use('/messenger', withChats(ChatPage))
   .use('/edit-password', withUser(EditPasswordPage))
   .use('/error-404', Page404)
   .use('/error-500', Page500)

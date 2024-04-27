@@ -2,14 +2,14 @@ import Block from '../../shared/Block.ts';
 
 type ButtonProps = {
   text: string;
-  page: string;
+  page?: string;
   type?: string;
+  events?: unknown;
 };
 
 class Button extends Block {
   constructor(props: ButtonProps) {
     super({
-      text: props.text,
       page: props.page,
       type: props.type || 'button',
       events: {
@@ -19,6 +19,7 @@ class Button extends Block {
           }
         },
       },
+      ...props,
     });
   }
   override render() {
