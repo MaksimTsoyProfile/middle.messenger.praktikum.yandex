@@ -7,18 +7,16 @@ import { ChatUserList, ChatView } from '../../contents';
 
 class ChatPage extends Block {
   constructor() {
-    let addUserOpen = false;
     super({
       isVisible: true,
+      isOpen: false,
       ChatUserList: new ChatUserList({
-        value: '',
-        setAddUserOpen: (value: boolean) => {
-          addUserOpen = value;
+        handleOpen: () => {
+          this.open();
         },
       }),
       ChatView: new ChatView({}),
       UserDialog: new UserDialog({
-        open: addUserOpen,
         title: 'Добавить пользователя',
         buttonText: 'Добавить',
         events: {
@@ -31,6 +29,7 @@ class ChatPage extends Block {
               data[key] = value.toString();
             });
             console.log('add user', data);
+            this.close();
           },
         },
       }),
@@ -49,6 +48,14 @@ class ChatPage extends Block {
         });
       }
     });
+  }
+
+  open() {
+    this.setProps({ isOpen: true });
+  }
+
+  close() {
+    this.setProps({ isOpen: false });
   }
 
   hide() {
@@ -70,9 +77,11 @@ class ChatPage extends Block {
         <div class='chat-container__chat-view'>
           {{{ ChatView }}}
         </div>
+        {{#if isOpen}}
         <div class='chat-container__dialog'>
           {{{ UserDialog }}}
         </div>
+        {{/if}}
       </main>
     `;
   }

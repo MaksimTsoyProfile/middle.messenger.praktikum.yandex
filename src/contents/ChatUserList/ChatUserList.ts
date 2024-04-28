@@ -5,8 +5,7 @@ import Block from '../../shared/Block.ts';
 import { SearchInput } from '../../components/SearchInput';
 
 type ChatUserListProps = {
-  value: string;
-  setAddUserOpen: (value: boolean) => unknown;
+  handleOpen: () => unknown;
 };
 
 class ChatUserList extends Block {
@@ -14,7 +13,7 @@ class ChatUserList extends Block {
     super({
       ...props,
       SearchInput: new SearchInput({
-        value: props.value,
+        value: '',
       }),
       ProfileLink: new Link({
         page: '/settings',
@@ -26,7 +25,7 @@ class ChatUserList extends Block {
         text: 'Добавить пользователя',
         events: {
           click: () => {
-            props.setAddUserOpen(true);
+            props.handleOpen();
           },
         },
       }),
