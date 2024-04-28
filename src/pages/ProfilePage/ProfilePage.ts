@@ -7,9 +7,7 @@ class ProfilePage extends Block {
   constructor() {
     super({
       isVisible: true,
-      ProfileContent: new ProfileContent({
-        notEdit: true,
-      }),
+      ProfileContent: new ProfileContent({}),
     });
   }
 

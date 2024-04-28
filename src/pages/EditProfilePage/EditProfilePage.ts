@@ -1,18 +1,16 @@
-import { ProfileContent } from '../../contents/ProfileContent';
+import { EditProfileContent } from '../../contents/EditProfileContent';
 import Block from '../../shared/Block.ts';
 
 class EditPasswordPage extends Block {
   constructor() {
     super({
-      ProfileContent: new ProfileContent({
-        notEdit: false,
-      }),
+      EditProfileContent: new EditProfileContent({}),
     });
   }
   override render() {
     return `
       <main class='edit-profile'>
-        {{{ ProfileContent }}}
+        {{{ EditProfileContent }}}
       </main>
     `;
   }

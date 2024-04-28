@@ -1,5 +1,4 @@
-import { config } from '../../shared/config.ts';
-import { withUser } from '../../shared/connect.ts';
+import { chatViewConnect } from '../../shared/connect.ts';
 import { Message } from '../../components/Message';
 import { Avatar } from '../../components/Avatar';
 import { ChatInput } from '../../components/ChatInput';
@@ -9,6 +8,7 @@ import Block from '../../shared/Block.ts';
 type ChatViewProps = {
   login: string;
   avatar: string;
+  AvatarComponent: Avatar;
   name?: string;
   notEdit: boolean;
   email: string;
@@ -20,12 +20,9 @@ type ChatViewProps = {
 
 class ChatView extends Block {
   constructor(props: ChatViewProps) {
-    console.log('props', props);
     super({
       login: props.login,
-      Avatar: new Avatar({
-        src: props.avatar ? `${config.baseUrl}/resources${props.avatar}` : '',
-      }),
+      AvatarComponent: props.AvatarComponent,
       ChatInput: new ChatInput({
         value: '',
       }),
@@ -91,7 +88,7 @@ class ChatView extends Block {
       <div class='chat-view'>
         <div class='chat-view__header'>
           <div class='chat-view__header__avatar'>
-            {{{ Avatar }}}
+            {{{ AvatarComponent }}}
           </div>
           <h3 class='chat-view__header__name'>
             {{ login }}
@@ -115,4 +112,4 @@ class ChatView extends Block {
   }
 }
 
-export default withUser(ChatView);
+export default chatViewConnect(ChatView);
