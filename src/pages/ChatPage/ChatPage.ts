@@ -7,7 +7,7 @@ import { ChatUserList, ChatView } from '../../contents';
 
 class ChatPage extends Block {
   constructor() {
-    let addUserOpen = true;
+    let addUserOpen = false;
     super({
       ChatUserList: new ChatUserList({
         value: '',

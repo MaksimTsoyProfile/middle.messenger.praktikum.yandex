@@ -10,7 +10,6 @@ import { InputField } from '../../components/InputField';
 import Block from '../../shared/Block.ts';
 
 type ProfileContentProps = {
-  name?: string;
   avatar?: string;
   notEdit: boolean;
   email: string;
@@ -98,7 +97,7 @@ class ProfileContent extends Block {
         page: '/settings',
         type: 'submit',
       }),
-      name: props.name,
+      display_name: props.display_name,
       notEdit: props.notEdit,
       events: {
         submit: (e: Event) => {
@@ -175,7 +174,7 @@ class ProfileContent extends Block {
           </div>
         </div>
         <div class='profile-container__title'>
-          <h2>{{ name }}</h2>
+          <h2>{{ display_name }}</h2>
         </div>
         <div class='profile-container__input'>
           {{{ InputFieldEmail }}}
