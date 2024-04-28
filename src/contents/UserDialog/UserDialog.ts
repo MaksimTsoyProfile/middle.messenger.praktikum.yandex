@@ -28,6 +28,7 @@ class UserDialog extends Block {
   override render() {
     return `
       <form class='user-dialog'>
+        <span class='user-dialog__close-mark' type='button'>x</span>
         <h3 class='user-dialog__header'>{{{ title }}}</h3>
         <div class='user-dialog__input-block'>
           {{{ LoginInput }}}

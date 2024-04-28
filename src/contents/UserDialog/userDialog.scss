@@ -16,10 +16,21 @@
   padding: 30px 40px;
   width: 400px;
 
+  &__close-mark {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    padding: 2px;
+    cursor: pointer;
+  }
+
   &__header {
     display: flex;
     justify-content: center;
     margin-bottom: 80px;
+    margin-top: 10px;
     font-weight: normal;
     font-size: 24px;
     color: $black;

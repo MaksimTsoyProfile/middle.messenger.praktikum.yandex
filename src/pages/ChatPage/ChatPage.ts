@@ -31,6 +31,13 @@ class ChatPage extends Block {
             console.log('add user', data);
             this.close();
           },
+          click: (e: Event) => {
+            e.preventDefault();
+            const form = e.target as HTMLFormElement;
+            if (form.tagName === 'SPAN') {
+              this.close();
+            }
+          },
         },
       }),
     });
