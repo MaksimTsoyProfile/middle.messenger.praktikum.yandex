@@ -45,6 +45,6 @@ export const isDeepEqual = (lhs: PlainObject, rhs: PlainObject) => {
 
 export const renderDOM = (block: { getContent: () => HTMLElement }) => {
   const root = document.getElementById('app') as HTMLElement;
-  root.append(block.getContent());
+  root.appendChild(block.getContent());
   return root;
 };

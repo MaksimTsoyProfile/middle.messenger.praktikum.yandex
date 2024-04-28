@@ -9,6 +9,7 @@ class ChatPage extends Block {
   constructor() {
     let addUserOpen = false;
     super({
+      isVisible: true,
       ChatUserList: new ChatUserList({
         value: '',
         setAddUserOpen: (value: boolean) => {
@@ -50,9 +51,19 @@ class ChatPage extends Block {
     });
   }
 
+  hide() {
+    super.hide();
+    this.setProps({ isVisible: false });
+  }
+
+  show() {
+    super.show();
+    this.setProps({ isVisible: true });
+  }
+
   override render() {
     return `
-      <main class='chat-container'>
+      <main class='chat-container' {{#if isVisible}} style='display: flex;' {{else}} style='display: none;' {{/if}}>
         <div class='chat-container__user-list'>
           {{{ ChatUserList }}}
         </div>

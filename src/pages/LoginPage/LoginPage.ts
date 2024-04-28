@@ -9,6 +9,7 @@ import { Link } from '../../components/Link';
 class LoginPage extends Block {
   constructor() {
     super({
+      isVisible: true,
       LoginInput: new Input({
         type: 'text',
         name: 'login',
@@ -78,9 +79,20 @@ class LoginPage extends Block {
       });
     }
   };
+
+  hide() {
+    super.hide();
+    this.setProps({ isVisible: false });
+  }
+
+  show() {
+    super.show();
+    this.setProps({ isVisible: true });
+  }
+
   override render() {
     return `
-      <div class='wrapper'>
+      <div class='wrapper' {{#if isVisible}} style='display: flex;' {{else}} style='display: none;' {{/if}}>
         <div class='dialog'>
           <main>
             <form class='login-container'>

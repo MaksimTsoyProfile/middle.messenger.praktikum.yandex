@@ -6,6 +6,7 @@ import Block from '../../shared/Block.ts';
 class ProfilePage extends Block {
   constructor() {
     super({
+      isVisible: true,
       ProfileContent: new ProfileContent({
         notEdit: true,
       }),
@@ -21,9 +22,19 @@ class ProfilePage extends Block {
     });
   }
 
+  hide() {
+    super.hide();
+    this.setProps({ isVisible: false });
+  }
+
+  show() {
+    super.show();
+    this.setProps({ isVisible: true });
+  }
+
   override render() {
     return `
-      <main class='profile-page-container'>
+      <main class='profile-page-container' {{#if isVisible}} style='display: flex;' {{else}} style='display: none;' {{/if}}>
         {{{ ProfileContent }}}
       </main>
     `;
