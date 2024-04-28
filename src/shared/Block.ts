@@ -171,7 +171,9 @@ export default class Block {
 
     Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
-      stub?.replaceWith(child.getContent());
+      if (stub) {
+        stub?.replaceWith(child.getContent());
+      }
     });
 
     Object.entries(this.lists).forEach(([, child]) => {
@@ -185,7 +187,9 @@ export default class Block {
       });
       // fragment.content.innerHTML = listCont.content;
       const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
-      stub?.replaceWith(listCont.content);
+      if (stub) {
+        stub?.replaceWith(listCont.content);
+      }
     });
 
     const newElement = fragment.content.firstElementChild as Node;
