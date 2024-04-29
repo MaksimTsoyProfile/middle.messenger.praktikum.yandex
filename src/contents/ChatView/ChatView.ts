@@ -1,3 +1,4 @@
+import { PopupItem } from '../../components/PopupItem';
 import { chatViewConnect } from '../../shared/connect.ts';
 import { Message } from '../../components/Message';
 import { Avatar } from '../../components/Avatar';
@@ -21,14 +22,48 @@ type ChatViewProps = {
 class ChatView extends Block {
   constructor(props: ChatViewProps) {
     super({
+      isOpenPopup: false,
       login: props.login,
       AvatarComponent: props.AvatarComponent,
       ChatInput: new ChatInput({
         value: '',
       }),
+      AddUser: new PopupItem({
+        text: 'Добавить пользователя',
+        srcIcon: '../../icons/addIcon.svg',
+        events: {
+          click: () => {
+            console.log('add item');
+          },
+        },
+      }),
+      RemoveUser: new PopupItem({
+        text: 'Удалить пользователя',
+        srcIcon: '../../icons/removeIcon.svg',
+        events: {
+          click: () => {
+            console.log('remove item');
+          },
+        },
+      }),
+      RemoveChat: new PopupItem({
+        text: 'Удалить чат',
+        srcIcon: '../../icons/removeIcon.svg',
+        events: {
+          click: () => {
+            console.log('remove chat');
+          },
+        },
+      }),
       events: {
         submit: (e: Event) => {
           this.handleSubmit(e);
+        },
+        click: (e: Event) => {
+          const form = e.target as HTMLFormElement;
+          if (form.classList.contains('chat-view__header__dots')) {
+            this.openPopup();
+          }
         },
       },
       chatMessages: [
@@ -71,6 +106,14 @@ class ChatView extends Block {
     });
   }
 
+  openPopup() {
+    this.setProps({ isOpenPopup: true });
+  }
+
+  closePopup() {
+    this.setProps({ isOpenPopup: false });
+  }
+
   handleSubmit = (event: Event) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
@@ -95,6 +138,17 @@ class ChatView extends Block {
           </h3>
           <div class='chat-view__header__dots'>
             <img src='../../icons/vertical-dots.svg' alt='dots'>
+            <div class='chat-view__header__popup'>
+              <div class='chat-view__header__popup-item'>
+                {{{ AddUser }}}
+              </div>
+              <div class='chat-view__header__popup-item'>
+                {{{ RemoveUser }}}
+              </div>
+              <div class='chat-view__header__popup-item'>
+                {{{ RemoveChat }}}
+              </div>
+            </div>
           </div>
         </div>
         <div class='chat-view__body'>
