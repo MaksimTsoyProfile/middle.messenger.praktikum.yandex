@@ -80,7 +80,7 @@ const chatUserListConnect = connect((state) => {
               counts: chat.unread_count,
             }),
         )
-      : null;
+      : [];
   return {
     ...data,
     ChatsComponent,
