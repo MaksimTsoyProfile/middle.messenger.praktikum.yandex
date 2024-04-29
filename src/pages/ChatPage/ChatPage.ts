@@ -17,22 +17,22 @@ class ChatPage extends Block {
       }),
       ChatView: new ChatView({}),
       UserDialog: new UserDialog({
-        title: 'Добавить пользователя',
+        title: 'Добавить чат',
         buttonText: 'Добавить',
         events: {
           submit: (e: Event) => {
             e.preventDefault();
+            const chatController = new ChatController();
             const form = e.target as HTMLFormElement;
             const formData = new FormData(form);
             const data: Record<string, string> = {};
             formData.forEach((value, key) => {
               data[key] = value.toString();
             });
-            console.log('add user', data);
+            chatController.createChat(data.title);
             this.close();
           },
           click: (e: Event) => {
-            e.preventDefault();
             const form = e.target as HTMLFormElement;
             if (form.tagName === 'SPAN') {
               this.close();

@@ -22,19 +22,19 @@ class ChatApi {
 
   createChat(title: string) {
     return httpClient.post('/chats', {
-      body: { title },
+      data: { title },
     });
   }
 
   addUserToChat(data: ChatUsersData) {
     return httpClient.put('/chats/users', {
-      body: data,
+      data: data,
     });
   }
 
   deleteChat(chatId: number) {
     return httpClient.delete('/chats', {
-      body: { chatId },
+      data: { chatId },
     });
   }
 }

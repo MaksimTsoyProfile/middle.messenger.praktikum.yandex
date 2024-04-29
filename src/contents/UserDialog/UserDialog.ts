@@ -12,8 +12,8 @@ class UserDialog extends Block {
     super({
       LoginInput: new Input({
         type: 'text',
-        name: 'login',
-        label: 'Логин',
+        name: 'title',
+        label: 'Название чата',
         value: '',
         error: '',
       }),

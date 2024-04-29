@@ -22,7 +22,7 @@ class ChatUserList extends Block {
       }),
       AddUserButton: new Button({
         type: 'button',
-        text: 'Добавить пользователя',
+        text: 'Добавить чат',
         events: {
           click: () => {
             props.handleOpen();
