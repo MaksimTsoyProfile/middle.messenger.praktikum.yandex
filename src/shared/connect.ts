@@ -32,6 +32,4 @@ export const chatViewConnect = connect((state) => {
 });
 
 export const withUser = connect((state) => ({ ...state.user }));
-export const withChats = connect(
-  (state) => console.log('state', state) || { ...state },
-);
+export const withChats = connect((state) => ({ ...state }));

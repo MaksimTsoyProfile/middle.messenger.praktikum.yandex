@@ -145,6 +145,7 @@ export default class Block {
       return;
     }
     const { children } = this._getChildrenPropsAndProps(nextProps);
+    console.log('nextProps', children);
     Object.assign(this.children, children);
     Object.assign(this.props, nextProps);
   };

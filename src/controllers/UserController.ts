@@ -22,7 +22,8 @@ class UserController {
     try {
       const response = await authApi.signUp(data);
       if (response instanceof XMLHttpRequest && response.status === 200) {
-        store.set('user', { id: response.response });
+        const data = JSON.parse(response.response);
+        store.set('user', data);
       }
       return response;
     } catch (error) {

@@ -75,7 +75,7 @@ const chatUserListConnect = connect((state) => {
             new UserItem({
               id: chat.id,
               name: chat.title,
-              text: chat.last_message.content,
+              text: chat.last_message?.content,
               date: '10:49',
               counts: chat.unread_count,
             }),
