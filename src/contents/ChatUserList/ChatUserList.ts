@@ -1,12 +1,14 @@
-import { withChats } from '../../shared/connect.ts';
+import { Chat } from '../../shared/Store.ts';
 import { Button, Link } from '../../components';
 import { UserItem } from '../../components/UserItem';
 import Block from '../../shared/Block.ts';
 import { SearchInput } from '../../components/SearchInput';
+import { connect } from '../../shared/connect.ts';
 
 type ChatUserListProps = {
   handleAddChat: () => unknown;
   handleAddUser: () => unknown;
+  ChatsComponent: UserItem[];
 };
 
 class ChatUserList extends Block {
@@ -39,26 +41,7 @@ class ChatUserList extends Block {
           },
         },
       }),
-      lists: [
-        new UserItem({
-          name: 'Андрей',
-          text: 'Изображение',
-          date: '10:49',
-          counts: 2,
-        }),
-        new UserItem({
-          name: 'Киноклуб',
-          text: 'Стикер',
-          date: '12:00',
-          counts: 2,
-        }),
-        new UserItem({
-          name: 'Илья',
-          text: 'Друзья, у меня для вас особенный выпуск новостей! Бла бла бла',
-          date: '15:12',
-          counts: 4,
-        }),
-      ],
+      ChatsComponent: props.ChatsComponent,
     });
   }
 
@@ -77,10 +60,31 @@ class ChatUserList extends Block {
         <div class='chat-user__item'>
           {{{ AddUserButton }}}
         </div>
-        {{{ lists }}}
+        {{{ ChatsComponent }}}
       </div>
     `;
   }
 }
 
-export default withChats(ChatUserList);
+const chatUserListConnect = connect((state) => {
+  const data = { ...state };
+  const ChatsComponent =
+    state.chats.length > 0
+      ? state.chats.map(
+          (chat: Chat) =>
+            new UserItem({
+              id: chat.id,
+              name: chat.title,
+              text: chat.last_message.content,
+              date: '10:49',
+              counts: chat.unread_count,
+            }),
+        )
+      : null;
+  return {
+    ...data,
+    ChatsComponent,
+  };
+});
+
+export default chatUserListConnect(ChatUserList);

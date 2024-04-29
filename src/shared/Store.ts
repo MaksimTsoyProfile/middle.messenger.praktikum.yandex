@@ -26,17 +26,38 @@ export type Chat = {
   unread_count: number;
   created_by: number;
   last_message: {
-    user: User;
+    content: string;
+    id: number;
+    time: string;
   };
   time: Date;
   content: string;
 };
 
+export type Message = {
+  chat_id: number;
+  content: string;
+  file: null;
+  id: number;
+  is_read: boolean;
+  time: string;
+  type: 'message';
+  user_id: number;
+};
+
+export type MessageItemProps = {
+  isMy: boolean;
+  isMessage?: boolean;
+  user: User;
+} & Message;
+
 type StateType = {
   user: User;
   chats: Chat[];
   selectedChat: number;
-  [key: string]: unknown;
+  messages: MessageItemProps[];
+  chatUsers: User[];
+  currentChat: Chat | null;
 };
 
 const set = <K extends keyof StateType>(
@@ -78,6 +99,9 @@ const initialState = {
   },
   chats: [],
   selectedChat: 0,
+  messages: [],
+  chatUsers: [],
+  currentChat: null,
 };
 
 class Store extends EventBus {

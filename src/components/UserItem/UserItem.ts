@@ -2,6 +2,7 @@ import { Avatar } from '../../components/Avatar';
 import Block from '../../shared/Block.ts';
 
 type UserItemProps = {
+  id: number;
   self?: boolean;
   name: string;
   text: string;
@@ -16,6 +17,7 @@ class UserItem extends Block {
       Avatar: new Avatar({
         src: props.src || '',
       }),
+      id: props.id,
       name: props.name,
       self: props.self,
       text: props.text,
@@ -25,7 +27,7 @@ class UserItem extends Block {
   }
   override render() {
     return `
-      <div class='user-item'>
+      <div class='user-item' key={{id}}>
         <div class='user-item__avatar'>
           {{{ Avatar }}}
         </div>
