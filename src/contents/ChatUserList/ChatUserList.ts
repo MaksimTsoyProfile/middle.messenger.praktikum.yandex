@@ -5,7 +5,8 @@ import Block from '../../shared/Block.ts';
 import { SearchInput } from '../../components/SearchInput';
 
 type ChatUserListProps = {
-  handleOpen: () => unknown;
+  handleAddChat: () => unknown;
+  handleAddUser: () => unknown;
 };
 
 class ChatUserList extends Block {
@@ -20,12 +21,21 @@ class ChatUserList extends Block {
         text: 'Профиль >',
         color: 'secondary',
       }),
-      AddUserButton: new Button({
+      AddChatButton: new Button({
         type: 'button',
         text: 'Добавить чат',
         events: {
           click: () => {
-            props.handleOpen();
+            props.handleAddChat();
+          },
+        },
+      }),
+      AddUserButton: new Button({
+        type: 'button',
+        text: 'Добавить пользователя',
+        events: {
+          click: () => {
+            props.handleAddUser();
           },
         },
       }),
@@ -60,6 +70,9 @@ class ChatUserList extends Block {
         </div>
         <div class='chat-user__search'>
           {{{ SearchInput }}}
+        </div>
+        <div class='chat-user__item'>
+          {{{ AddChatButton }}}
         </div>
         <div class='chat-user__item'>
           {{{ AddUserButton }}}

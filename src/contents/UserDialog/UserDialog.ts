@@ -5,6 +5,8 @@ type AddUserDialogProps = {
   title: string;
   buttonText: string;
   events: unknown;
+  inputName: string;
+  inputLabel: string;
 };
 
 class UserDialog extends Block {
@@ -12,8 +14,8 @@ class UserDialog extends Block {
     super({
       LoginInput: new Input({
         type: 'text',
-        name: 'title',
-        label: 'Название чата',
+        name: props.inputName,
+        label: props.inputLabel,
         value: '',
         error: '',
       }),

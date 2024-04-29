@@ -35,14 +35,14 @@ export type Chat = {
 type StateType = {
   user: User;
   chats: Chat[];
-  selectedChat: Chat | null;
+  selectedChat: number;
   [key: string]: unknown;
 };
 
-const set = (
+const set = <K extends keyof StateType>(
   object: Indexed | unknown,
-  path: string,
-  value: unknown,
+  path: K,
+  value: StateType[K],
 ): Indexed | unknown => {
   if (typeof path !== 'string') {
     throw new Error('path must be string');
@@ -77,7 +77,7 @@ const initialState = {
     phone: '',
   },
   chats: [],
-  selectedChat: null,
+  selectedChat: 0,
 };
 
 class Store extends EventBus {
@@ -87,7 +87,7 @@ class Store extends EventBus {
     return this.state;
   }
 
-  public set(path: string, value: Partial<StateType>) {
+  public set<K extends keyof StateType>(path: K, value: StateType[K]) {
     set(this.state, path, value);
     this.emit(StoreEvents.UPDATED);
   }

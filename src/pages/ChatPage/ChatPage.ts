@@ -9,16 +9,22 @@ class ChatPage extends Block {
   constructor() {
     super({
       isVisible: true,
-      isOpen: false,
+      isOpenAddChat: false,
+      isOpenAddUser: false,
       ChatUserList: new ChatUserList({
-        handleOpen: () => {
-          this.open();
+        handleAddChat: () => {
+          this.openAddChat();
+        },
+        handleAddUser: () => {
+          this.openAddUser();
         },
       }),
       ChatView: new ChatView({}),
-      UserDialog: new UserDialog({
+      AddChatDialog: new UserDialog({
         title: 'Добавить чат',
         buttonText: 'Добавить',
+        inputName: 'title',
+        inputLabel: 'Название чата',
         events: {
           submit: (e: Event) => {
             e.preventDefault();
@@ -30,12 +36,41 @@ class ChatPage extends Block {
               data[key] = value.toString();
             });
             chatController.createChat(data.title);
-            this.close();
+            this.closeAddChat();
           },
           click: (e: Event) => {
             const form = e.target as HTMLFormElement;
             if (form.tagName === 'SPAN') {
-              this.close();
+              this.closeAddChat();
+            }
+          },
+        },
+      }),
+      AddUserDialog: new UserDialog({
+        title: 'Добавить пользователя',
+        buttonText: 'Добавить',
+        inputName: 'userId',
+        inputLabel: 'Id пользователя',
+        events: {
+          submit: (e: Event) => {
+            e.preventDefault();
+            const chatController = new ChatController();
+            const form = e.target as HTMLFormElement;
+            const formData = new FormData(form);
+            const data: Record<string, string> = {};
+            formData.forEach((value, key) => {
+              data[key] = value.toString();
+            });
+            chatController.addUserToChat({
+              users: [Number(data.userId)],
+              chatId: Number(this.props.selectedChat),
+            });
+            this.closeAddUser();
+          },
+          click: (e: Event) => {
+            const form = e.target as HTMLFormElement;
+            if (form.tagName === 'SPAN') {
+              this.closeAddUser();
             }
           },
         },
@@ -57,12 +92,20 @@ class ChatPage extends Block {
     });
   }
 
-  open() {
-    this.setProps({ isOpen: true });
+  openAddChat() {
+    this.setProps({ isOpenAddChat: true });
   }
 
-  close() {
-    this.setProps({ isOpen: false });
+  closeAddChat() {
+    this.setProps({ isOpenAddChat: false });
+  }
+
+  openAddUser() {
+    this.setProps({ isOpenAddUser: true });
+  }
+
+  closeAddUser() {
+    this.setProps({ isOpenAddUser: false });
   }
 
   hide() {
@@ -84,9 +127,14 @@ class ChatPage extends Block {
         <div class='chat-container__chat-view'>
           {{{ ChatView }}}
         </div>
-        {{#if isOpen}}
+        {{#if isOpenAddChat}}
         <div class='chat-container__dialog'>
-          {{{ UserDialog }}}
+          {{{ AddChatDialog }}}
+        </div>
+        {{/if}}
+        {{#if isOpenAddUser}}
+        <div class='chat-container__dialog'>
+          {{{ AddUserDialog }}}
         </div>
         {{/if}}
       </main>
