@@ -7,7 +7,6 @@ import { connect } from '../../shared/connect.ts';
 
 type ChatUserListProps = {
   handleAddChat: () => unknown;
-  handleAddUser: () => unknown;
   ChatsComponent: UserItem[];
 };
 
@@ -29,15 +28,6 @@ class ChatUserList extends Block {
         events: {
           click: () => {
             props.handleAddChat();
-          },
-        },
-      }),
-      AddUserButton: new Button({
-        type: 'button',
-        text: 'Добавить пользователя',
-        events: {
-          click: () => {
-            props.handleAddUser();
           },
         },
       }),

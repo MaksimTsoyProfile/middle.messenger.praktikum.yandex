@@ -1,4 +1,4 @@
-import { Button, Input } from '../../components';
+import { Button, Input } from '../../components/index.ts';
 import Block from '../../shared/Block.ts';
 
 type AddUserDialogProps = {

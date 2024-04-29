@@ -17,12 +17,14 @@ type ChatViewProps = {
   second_name: string;
   display_name: string;
   phone: string;
+  handleAddUser: () => unknown;
+  handleRemoveUser: () => unknown;
 };
 
 class ChatView extends Block {
   constructor(props: ChatViewProps) {
     super({
-      isOpenPopup: false,
+      isOpenAddUser: false,
       login: props.login,
       AvatarComponent: props.AvatarComponent,
       ChatInput: new ChatInput({
@@ -33,7 +35,7 @@ class ChatView extends Block {
         srcIcon: '../../icons/addIcon.svg',
         events: {
           click: () => {
-            console.log('add item');
+            props.handleAddUser();
           },
         },
       }),
@@ -42,7 +44,7 @@ class ChatView extends Block {
         srcIcon: '../../icons/removeIcon.svg',
         events: {
           click: () => {
-            console.log('remove item');
+            props.handleRemoveUser();
           },
         },
       }),

@@ -1,4 +1,5 @@
-import { UserDialog } from '../../contents/UserDialog';
+import { UserListDialog } from '../../contents/UserListDialog';
+import { UserDialog } from '../../components/UserDialog';
 import { ChatController } from '../../controllers/ChatController.ts';
 import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
@@ -11,6 +12,7 @@ class ChatPage extends Block {
       isVisible: true,
       isOpenAddChat: false,
       isOpenAddUser: false,
+      isOpenRemoveUser: false,
       ChatUserList: new ChatUserList({
         handleAddChat: () => {
           this.openAddChat();
@@ -19,7 +21,14 @@ class ChatPage extends Block {
           this.openAddUser();
         },
       }),
-      ChatView: new ChatView({}),
+      ChatView: new ChatView({
+        handleAddUser: () => {
+          this.openAddUser();
+        },
+        handleRemoveUser: () => {
+          this.openRemoveUser();
+        },
+      }),
       AddChatDialog: new UserDialog({
         title: 'Добавить чат',
         buttonText: 'Добавить',
@@ -75,6 +84,17 @@ class ChatPage extends Block {
           },
         },
       }),
+      RemoveUserDialog: new UserListDialog({
+        title: 'Удалить пользователя',
+        events: {
+          click: (e: Event) => {
+            const form = e.target as HTMLFormElement;
+            if (form.tagName === 'SPAN') {
+              this.closeRemoveUser();
+            }
+          },
+        },
+      }),
     });
   }
 
@@ -108,6 +128,14 @@ class ChatPage extends Block {
     this.setProps({ isOpenAddUser: false });
   }
 
+  openRemoveUser() {
+    this.setProps({ isOpenRemoveUser: true });
+  }
+
+  closeRemoveUser() {
+    this.setProps({ isOpenRemoveUser: false });
+  }
+
   hide() {
     super.hide();
     this.setProps({ isVisible: false });
@@ -135,6 +163,11 @@ class ChatPage extends Block {
         {{#if isOpenAddUser}}
         <div class='chat-container__dialog'>
           {{{ AddUserDialog }}}
+        </div>
+        {{/if}}
+        {{#if isOpenRemoveUser}}
+        <div class='chat-container__dialog'>
+          {{{ RemoveUserDialog }}}
         </div>
         {{/if}}
       </main>

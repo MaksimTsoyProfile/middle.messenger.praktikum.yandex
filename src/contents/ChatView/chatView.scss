@@ -30,7 +30,16 @@
       width: 15px;
       height: 15px;
       color: $black;
+      padding: 14px;
       margin-left: auto;
+
+      &:hover .chat-view__header__popup {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        top: 40px;
+        right: 20px;
+      }
     }
 
     &__popup {
@@ -42,14 +51,6 @@
       padding: 10px;
       border-radius: 8px;
       box-sizing: border-box;
-    }
-
-    &:hover .chat-view__header__popup {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      top: 40px;
-      right: 20px;
     }
 
     &__popup-item {
