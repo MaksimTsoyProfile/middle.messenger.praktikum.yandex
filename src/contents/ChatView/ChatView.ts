@@ -1,3 +1,5 @@
+import store from '../../shared/Store.ts';
+import { ChatController } from '../../controllers/ChatController.ts';
 import { PopupItem } from '../../components/PopupItem';
 import { chatViewConnect } from '../../shared/connect.ts';
 import { Message } from '../../components/Message';
@@ -53,19 +55,13 @@ class ChatView extends Block {
         srcIcon: '../../icons/removeIcon.svg',
         events: {
           click: () => {
-            console.log('remove chat');
+            this.handleRemoveChat();
           },
         },
       }),
       events: {
         submit: (e: Event) => {
           this.handleSubmit(e);
-        },
-        click: (e: Event) => {
-          const form = e.target as HTMLFormElement;
-          if (form.classList.contains('chat-view__header__dots')) {
-            this.openPopup();
-          }
         },
       },
       chatMessages: [
@@ -108,13 +104,12 @@ class ChatView extends Block {
     });
   }
 
-  openPopup() {
-    this.setProps({ isOpenPopup: true });
-  }
-
-  closePopup() {
-    this.setProps({ isOpenPopup: false });
-  }
+  handleRemoveChat = () => {
+    const chatController = new ChatController();
+    if (store.getState().selectedChat) {
+      chatController.deleteChat(store.getState().selectedChat);
+    }
+  };
 
   handleSubmit = (event: Event) => {
     event.preventDefault();

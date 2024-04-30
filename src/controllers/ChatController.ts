@@ -68,6 +68,18 @@ export class ChatController {
     }
   }
 
+  public async deleteUserFromChat(data: ChatUsersData) {
+    try {
+      const response = await chatApi.deleteUserFromChat(data);
+      if (response instanceof XMLHttpRequest && response.status === 200) {
+        this.getChatUsers(data.chatId);
+      }
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
   public async getToken(chatId: number) {
     try {
       const response = await chatApi.getToken(chatId);

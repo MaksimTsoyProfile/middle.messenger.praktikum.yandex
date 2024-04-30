@@ -20,8 +20,8 @@ class PopupItem extends Block {
   override render() {
     return `
       <button class='popup-item' type='button'>
-        <img src={{ srcIcon }} alt='done'>
-        {{ text }}
+        <img src={{ srcIcon }} alt='icon'>
+        <span>{{ text }}</span>
       </button>
     `;
   }

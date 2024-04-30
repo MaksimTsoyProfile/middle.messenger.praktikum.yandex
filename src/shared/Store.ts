@@ -19,6 +19,16 @@ export type User = {
   phone: string;
 };
 
+export type ChatUser = {
+  avatar: string;
+  display_name: string;
+  first_name: string;
+  id: number;
+  login: string;
+  role: string;
+  second_name: string;
+};
+
 export type Chat = {
   id: number;
   title: string;

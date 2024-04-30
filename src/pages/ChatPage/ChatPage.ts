@@ -1,3 +1,5 @@
+import connectWS from '../../shared/connectWS.ts';
+import store, { Chat } from '../../shared/Store.ts';
 import { UserListDialog } from '../../contents/UserListDialog';
 import { UserDialog } from '../../components/UserDialog';
 import { ChatController } from '../../controllers/ChatController.ts';
@@ -7,6 +9,8 @@ import Block from '../../shared/Block.ts';
 import { ChatUserList, ChatView } from '../../contents';
 
 class ChatPage extends Block {
+  private socket: WebSocket | null = null;
+  private chat: Chat | null = null;
   constructor() {
     super({
       isVisible: true,
@@ -105,8 +109,9 @@ class ChatPage extends Block {
       if (response instanceof XMLHttpRequest && response.status === 401) {
         router.go('/');
       } else {
-        chatController.getChats().then((response) => {
-          console.log((response as XMLHttpRequest).response);
+        chatController.getChats().then(() => {
+          const chatId = store.getState().selectedChat;
+          chatController.getChatUsers(chatId);
         });
       }
     });
@@ -145,6 +150,27 @@ class ChatPage extends Block {
     super.show();
     this.setProps({ isVisible: true });
   }
+
+  // async createSocket() {
+  //   const userId = store.getState().user.id;
+  //   const chatId = store.getState().selectedChat;
+  //   const chatController = new ChatController();
+  //   try {
+  //     const response = await connectWS(userId, chatId);
+  //     if (response) {
+  //       this.socket = response;
+  //       chatController.getChatUsers(chatId);
+  //       this.chat = store
+  //         .getState()
+  //         .chats.filter((chat) => chat.id === this.props.selectedChat)[0];
+  //     }
+  //     this.props.title = this.chat.title;
+  //     this.updateChatAvatar(this.chat);
+  //   } catch (error) {
+  //     console.log(error);
+  //     return error;
+  //   }
+  // }
 
   override render() {
     return `

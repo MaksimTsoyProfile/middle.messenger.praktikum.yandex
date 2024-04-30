@@ -57,7 +57,6 @@ class ChatUserList extends Block {
 }
 
 const chatUserListConnect = connect((state) => {
-  const data = { ...state };
   const ChatsComponent =
     state.chats.length > 0
       ? state.chats.map(
@@ -70,9 +69,8 @@ const chatUserListConnect = connect((state) => {
               counts: chat.unread_count,
             }),
         )
-      : [];
+      : null;
   return {
-    ...data,
     ChatsComponent,
   };
 });

@@ -37,6 +37,12 @@ class ChatApi {
       data: { chatId },
     });
   }
+
+  deleteUserFromChat(data: ChatUsersData) {
+    return httpClient.delete(`/chats/users`, {
+      data: data,
+    });
+  }
 }
 
 export default ChatApi;
