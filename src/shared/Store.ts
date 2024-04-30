@@ -44,7 +44,7 @@ export type Chat = {
   content: string;
 };
 
-export type Message = {
+export type MessageType = {
   chat_id: number;
   content: string;
   file: null;
@@ -59,7 +59,7 @@ export type MessageItemProps = {
   isMy: boolean;
   isMessage?: boolean;
   user: User;
-} & Message;
+} & MessageType;
 
 type StateType = {
   user: User;

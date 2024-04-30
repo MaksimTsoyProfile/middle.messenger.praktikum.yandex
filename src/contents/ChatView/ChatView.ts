@@ -1,5 +1,5 @@
 import { config } from '../../shared/config.ts';
-import store, { Chat } from '../../shared/Store.ts';
+import store, { Chat, MessageType } from '../../shared/Store.ts';
 import { ChatController } from '../../controllers/ChatController.ts';
 import { PopupItem } from '../../components/PopupItem';
 import { connect } from '../../shared/connect.ts';
@@ -14,6 +14,7 @@ type ChatViewProps = {
   avatar: string;
   title: string;
   AvatarComponent: Avatar;
+  ChatMessages: Message[];
   name?: string;
   notEdit: boolean;
   email: string;
@@ -23,6 +24,7 @@ type ChatViewProps = {
   phone: string;
   handleAddUser: () => unknown;
   handleRemoveUser: () => unknown;
+  sendMessage: (e: Event) => unknown;
 };
 
 class ChatView extends Block {
@@ -30,6 +32,7 @@ class ChatView extends Block {
     super({
       isOpenAddUser: false,
       login: props.login,
+      sendMessage: props.sendMessage,
       AvatarComponent: props.AvatarComponent,
       ChatInput: new ChatInput({
         value: '',
@@ -63,46 +66,10 @@ class ChatView extends Block {
       }),
       events: {
         submit: (e: Event) => {
-          this.handleSubmit(e);
+          props.sendMessage(e);
         },
       },
-      chatMessages: [
-        new ChatMessages({
-          date: '12.03',
-          messages: [
-            new Message({
-              isMyself: false,
-              time: '11:56',
-              text:
-                'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.\n' +
-                '\n' +
-                'Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.',
-            }),
-            new Message({
-              isMyself: true,
-              isDone: true,
-              time: '12:00',
-              text: 'Круто',
-            }),
-          ],
-        }),
-        new ChatMessages({
-          date: '13.03',
-          messages: [
-            new Message({
-              isMyself: false,
-              time: '11:56',
-              text: 'Рад что тебе понравилось',
-            }),
-            new Message({
-              isMyself: true,
-              isDone: true,
-              time: '12:00',
-              text: 'Присылай еще',
-            }),
-          ],
-        }),
-      ],
+      ChatMessages: props.ChatMessages,
     });
   }
 
@@ -111,18 +78,6 @@ class ChatView extends Block {
     if (store.getState().selectedChat) {
       chatController.deleteChat(store.getState().selectedChat);
     }
-  };
-
-  handleSubmit = (event: Event) => {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const formData = new FormData(form);
-    const data: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
-    });
-    console.log(data);
-    form.reset();
   };
 
   override render() {
@@ -151,7 +106,7 @@ class ChatView extends Block {
           </div>
         </div>
         <div class='chat-view__body'>
-          {{{ chatMessages }}}
+          {{{ ChatMessages }}}
         </div>
         <form class='chat-view__footer'>
           <img src='../../icons/clip.svg' alt='clip' class='chat-view__footer__clip'>
@@ -169,12 +124,21 @@ const chatViewConnect = connect((state) => {
   const currentChat = state.chats.find(
     (chat: Chat) => chat.id === state.selectedChat,
   );
+  const ChatMessages = state.messages.map(
+    (message: MessageType) =>
+      new Message({
+        text: message.content,
+        time: message.time,
+        isDone: message.is_read,
+        isMyself: message.user_id === state.user.id,
+      }),
+  );
   const AvatarComponent = new Avatar({
     src: currentChat?.avatar
       ? `${config.baseUrl}/resources${currentChat?.avatar}`
       : '',
   });
-  return { ...currentChat, AvatarComponent };
+  return { ...currentChat, AvatarComponent, ChatMessages };
 });
 
 export default chatViewConnect(ChatView);

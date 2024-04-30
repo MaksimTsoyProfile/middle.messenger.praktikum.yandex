@@ -5,7 +5,7 @@ import { UserDialog } from '../../components/UserDialog';
 import { ChatController } from '../../controllers/ChatController.ts';
 import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
-import Block from '../../shared/Block.ts';
+import Block, { Props } from '../../shared/Block.ts';
 import { ChatUserList, ChatView } from '../../contents';
 
 class ChatPage extends Block {
@@ -31,6 +31,9 @@ class ChatPage extends Block {
         },
         handleRemoveUser: () => {
           this.openRemoveUser();
+        },
+        sendMessage: (e: Event) => {
+          this.sendMessage(e);
         },
       }),
       AddChatDialog: new UserDialog({
@@ -112,10 +115,22 @@ class ChatPage extends Block {
         chatController.getChats().then(() => {
           const chatId = store.getState().selectedChat;
           chatController.getChatUsers(chatId);
+          this.createSocket();
         });
       }
     });
   }
+
+  // componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+  //   if (this.socket && oldProps.selectedChat !== newProps.selectedChat) {
+  //     this.socket.close();
+  //   }
+  //   if (oldProps.selectedChat !== newProps.selectedChat) {
+  //     this.createSocket();
+  //   }
+  //
+  //   return super.componentDidUpdate(oldProps, newProps);
+  // }
 
   openAddChat() {
     this.setProps({ isOpenAddChat: true });
@@ -151,26 +166,34 @@ class ChatPage extends Block {
     this.setProps({ isVisible: true });
   }
 
-  // async createSocket() {
-  //   const userId = store.getState().user.id;
-  //   const chatId = store.getState().selectedChat;
-  //   const chatController = new ChatController();
-  //   try {
-  //     const response = await connectWS(userId, chatId);
-  //     if (response) {
-  //       this.socket = response;
-  //       chatController.getChatUsers(chatId);
-  //       this.chat = store
-  //         .getState()
-  //         .chats.filter((chat) => chat.id === this.props.selectedChat)[0];
-  //     }
-  //     this.props.title = this.chat.title;
-  //     this.updateChatAvatar(this.chat);
-  //   } catch (error) {
-  //     console.log(error);
-  //     return error;
-  //   }
-  // }
+  sendMessage = (event: Event) => {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const data: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      data[key] = value.toString();
+    });
+    const message = { content: data.message, type: 'message' };
+    this.socket?.send(JSON.stringify(message));
+    form.reset();
+  };
+
+  async createSocket() {
+    const userId = store.getState().user.id;
+    const chatId = store.getState().selectedChat;
+    const chatController = new ChatController();
+    try {
+      const response = await connectWS(userId, chatId);
+      if (response) {
+        this.socket = response;
+        chatController.getChatUsers(chatId);
+      }
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
 
   override render() {
     return `
