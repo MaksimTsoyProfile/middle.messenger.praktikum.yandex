@@ -9,6 +9,8 @@ type UserItemProps = {
   date: string;
   counts: number;
   src?: string;
+  events: unknown;
+  isActive: boolean;
 };
 
 class UserItem extends Block {
@@ -17,17 +19,12 @@ class UserItem extends Block {
       Avatar: new Avatar({
         src: props.src || '',
       }),
-      id: props.id,
-      name: props.name,
-      self: props.self,
-      text: props.text,
-      date: props.date,
-      counts: props.counts,
+      ...props,
     });
   }
   override render() {
     return `
-      <div class='user-item' key={{id}}>
+      <div class='user-item' key={{id}} {{#if isActive}} style='background: #e4edfd' {{/if}}>
         <div class='user-item__avatar'>
           {{{ Avatar }}}
         </div>

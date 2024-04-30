@@ -1,4 +1,4 @@
-import { Chat } from '../../shared/Store.ts';
+import store, { Chat } from '../../shared/Store.ts';
 import { Button, Link } from '../../components';
 import { UserItem } from '../../components/UserItem';
 import Block from '../../shared/Block.ts';
@@ -67,6 +67,12 @@ const chatUserListConnect = connect((state) => {
               text: chat.last_message?.content,
               date: '10:49',
               counts: chat.unread_count,
+              isActive: store.getState().selectedChat === chat.id,
+              events: {
+                click: () => {
+                  store.set('selectedChat', chat.id);
+                },
+              },
             }),
         )
       : null;
