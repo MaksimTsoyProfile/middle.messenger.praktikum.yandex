@@ -6,7 +6,6 @@ import { connect } from '../../shared/connect.ts';
 import { Message } from '../../components/Message';
 import { Avatar } from '../../components/Avatar';
 import { ChatInput } from '../../components/ChatInput';
-import { ChatMessages } from '../../contents/ChatMessages';
 import Block from '../../shared/Block.ts';
 
 type ChatViewProps = {

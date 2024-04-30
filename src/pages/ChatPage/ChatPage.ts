@@ -1,16 +1,15 @@
 import connectWS from '../../shared/connectWS.ts';
-import store, { Chat } from '../../shared/Store.ts';
+import store from '../../shared/Store.ts';
 import { UserListDialog } from '../../contents/UserListDialog';
 import { UserDialog } from '../../components/UserDialog';
 import { ChatController } from '../../controllers/ChatController.ts';
 import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
-import Block, { Props } from '../../shared/Block.ts';
+import Block from '../../shared/Block.ts';
 import { ChatUserList, ChatView } from '../../contents';
 
 class ChatPage extends Block {
   private socket: WebSocket | null = null;
-  private chat: Chat | null = null;
   constructor() {
     super({
       isVisible: true,
