@@ -1,5 +1,3 @@
-import { config } from '../shared/config.ts';
-import { Avatar } from '../components';
 import { isDeepEqual } from './utils.ts';
 import Block, { Props } from './Block.ts';
 import store, { Indexed, StoreEvents } from './Store.ts';
@@ -22,14 +20,6 @@ export const connect =
       }
     };
   };
-
-export const chatViewConnect = connect((state) => {
-  const userData = { ...state.user };
-  const AvatarComponent = new Avatar({
-    src: userData.avatar ? `${config.baseUrl}/resources${userData.avatar}` : '',
-  });
-  return { ...userData, AvatarComponent };
-});
 
 export const withUser = connect((state) => ({ ...state.user }));
 export const withChats = connect((state) => console.log(state) || { ...state });

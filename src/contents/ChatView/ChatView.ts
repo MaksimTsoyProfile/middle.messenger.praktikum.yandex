@@ -1,7 +1,8 @@
-import store from '../../shared/Store.ts';
+import { config } from '../../shared/config.ts';
+import store, { Chat } from '../../shared/Store.ts';
 import { ChatController } from '../../controllers/ChatController.ts';
 import { PopupItem } from '../../components/PopupItem';
-import { chatViewConnect } from '../../shared/connect.ts';
+import { connect } from '../../shared/connect.ts';
 import { Message } from '../../components/Message';
 import { Avatar } from '../../components/Avatar';
 import { ChatInput } from '../../components/ChatInput';
@@ -11,6 +12,7 @@ import Block from '../../shared/Block.ts';
 type ChatViewProps = {
   login: string;
   avatar: string;
+  title: string;
   AvatarComponent: Avatar;
   name?: string;
   notEdit: boolean;
@@ -131,7 +133,7 @@ class ChatView extends Block {
             {{{ AvatarComponent }}}
           </div>
           <h3 class='chat-view__header__name'>
-            {{ login }}
+            {{ title }}
           </h3>
           <div class='chat-view__header__dots'>
             <img src='../../icons/vertical-dots.svg' alt='dots'>
@@ -162,5 +164,17 @@ class ChatView extends Block {
     `;
   }
 }
+
+const chatViewConnect = connect((state) => {
+  const currentChat = state.chats.find(
+    (chat: Chat) => chat.id === state.selectedChat,
+  );
+  const AvatarComponent = new Avatar({
+    src: currentChat?.avatar
+      ? `${config.baseUrl}/resources${currentChat?.avatar}`
+      : '',
+  });
+  return { ...currentChat, AvatarComponent };
+});
 
 export default chatViewConnect(ChatView);
