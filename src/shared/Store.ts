@@ -68,6 +68,7 @@ type StateType = {
   messages: MessageItemProps[];
   chatUsers: User[];
   currentChat: Chat | null;
+  socket: WebSocket | null;
 };
 
 const set = <K extends keyof StateType>(
@@ -112,6 +113,7 @@ const initialState = {
   messages: [],
   chatUsers: [],
   currentChat: null,
+  socket: null,
 };
 
 class Store extends EventBus {

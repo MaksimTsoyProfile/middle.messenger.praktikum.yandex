@@ -22,4 +22,4 @@ export const connect =
   };
 
 export const withUser = connect((state) => ({ ...state.user }));
-export const withChats = connect((state) => console.log(state) || { ...state });
+export const withChats = connect((state) => ({ ...state }));

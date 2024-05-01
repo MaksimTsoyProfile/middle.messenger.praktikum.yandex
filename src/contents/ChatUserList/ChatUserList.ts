@@ -1,3 +1,5 @@
+import connectWS from '../../shared/connectWS.ts';
+import { ChatController } from '../../controllers/ChatController.ts';
 import store, { Chat } from '../../shared/Store.ts';
 import { Button, Link } from '../../components';
 import { UserItem } from '../../components/UserItem';
@@ -69,7 +71,28 @@ const chatUserListConnect = connect((state) => {
               counts: chat.unread_count,
               isActive: store.getState().selectedChat === chat.id,
               events: {
-                click: () => {
+                click: async () => {
+                  const chatController = new ChatController();
+                  if (
+                    store.getState().socket &&
+                    store.getState().selectedChat !== chat.id
+                  ) {
+                    store.getState().socket?.close();
+                  }
+                  if (store.getState().selectedChat !== chat.id) {
+                    const userId = store.getState().user.id;
+                    const chatId = chat.id;
+                    try {
+                      const response = await connectWS(userId, chatId);
+                      if (response) {
+                        store.set('socket', response);
+                        chatController.getChatUsers(chatId);
+                      }
+                    } catch (error) {
+                      console.log(error);
+                      return error;
+                    }
+                  }
                   store.set('selectedChat', chat.id);
                 },
               },
@@ -78,6 +101,8 @@ const chatUserListConnect = connect((state) => {
       : null;
   return {
     ChatsComponent,
+    selectedChat: state.selectedChat,
+    socket: state.socket,
   };
 });
 

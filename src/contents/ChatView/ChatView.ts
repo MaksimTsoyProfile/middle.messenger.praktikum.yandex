@@ -123,15 +123,21 @@ const chatViewConnect = connect((state) => {
   const currentChat = state.chats.find(
     (chat: Chat) => chat.id === state.selectedChat,
   );
-  const ChatMessages = state.messages.map(
-    (message: MessageType) =>
-      new Message({
-        text: message.content,
-        time: message.time,
-        isDone: message.is_read,
-        isMyself: message.user_id === state.user.id,
-      }),
-  );
+  const ChatMessages = state.messages.map((message: MessageType) => {
+    const date = new Date(message.time);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    return new Message({
+      text: message.content,
+      time:
+        hours.toString().padStart(2, '0') +
+        ':' +
+        minutes.toString().padStart(2, '0'),
+      isDone: message.is_read,
+      isMyself: message.user_id === state.user.id,
+    });
+  });
   const AvatarComponent = new Avatar({
     src: currentChat?.avatar
       ? `${config.baseUrl}/resources${currentChat?.avatar}`

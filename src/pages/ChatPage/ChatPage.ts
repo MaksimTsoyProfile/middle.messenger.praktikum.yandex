@@ -9,7 +9,6 @@ import Block from '../../shared/Block.ts';
 import { ChatUserList, ChatView } from '../../contents';
 
 class ChatPage extends Block {
-  private socket: WebSocket | null = null;
   constructor() {
     super({
       isVisible: true,
@@ -120,17 +119,6 @@ class ChatPage extends Block {
     });
   }
 
-  // componentDidUpdate(oldProps: Props, newProps: Props): boolean {
-  //   if (this.socket && oldProps.selectedChat !== newProps.selectedChat) {
-  //     this.socket.close();
-  //   }
-  //   if (oldProps.selectedChat !== newProps.selectedChat) {
-  //     this.createSocket();
-  //   }
-  //
-  //   return super.componentDidUpdate(oldProps, newProps);
-  // }
-
   openAddChat() {
     this.setProps({ isOpenAddChat: true });
   }
@@ -174,7 +162,7 @@ class ChatPage extends Block {
       data[key] = value.toString();
     });
     const message = { content: data.message, type: 'message' };
-    this.socket?.send(JSON.stringify(message));
+    store.getState().socket?.send(JSON.stringify(message));
     form.reset();
   };
 
@@ -185,7 +173,7 @@ class ChatPage extends Block {
     try {
       const response = await connectWS(userId, chatId);
       if (response) {
-        this.socket = response;
+        store.set('socket', response);
         chatController.getChatUsers(chatId);
       }
     } catch (error) {
