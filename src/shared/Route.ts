@@ -1,3 +1,4 @@
+import Block from '../shared/Block.ts';
 import { renderDOM, isEqual } from './utils.ts';
 
 class Route {
@@ -7,7 +8,7 @@ class Route {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _block: any;
 
-  constructor(pathname: string, view: string) {
+  constructor(pathname: string, view: InstanceType<typeof Block>) {
     this._pathname = pathname;
     this._blockClass = view;
     this._block = null;
