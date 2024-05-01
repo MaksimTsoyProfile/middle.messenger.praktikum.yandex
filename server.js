@@ -8,7 +8,7 @@ const distPath = path.join(process.cwd(), 'dist');
 
 app.use(express.static(path.join(distPath)));
 
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(distPath, 'index.html'));
   res.status(200);
 });
