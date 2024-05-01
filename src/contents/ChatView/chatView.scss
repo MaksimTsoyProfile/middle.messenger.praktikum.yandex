@@ -44,12 +44,14 @@
       padding: 14px;
       margin-left: auto;
 
-      &:hover .chat-view__header__popup {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        top: 40px;
-        right: 20px;
+      &:hover {
+        .chat-view__header__popup {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          top: 40px;
+          right: 20px;
+        }
       }
     }
 
