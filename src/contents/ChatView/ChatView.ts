@@ -91,7 +91,7 @@ class ChatView extends Block {
           </h3>
           <div class='chat-view__header__dots'>
             <img src='../../icons/vertical-dots.svg' alt='dots'>
-            <div class='chat-view__header__popup'>
+            <div class='popup'>
               <div class='chat-view__header__popup-item'>
                 {{{ AddUser }}}
               </div>
