@@ -9,7 +9,7 @@
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px #00000024;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -38,8 +38,5 @@
 
   &__input-block {
     margin-bottom: 20px;
-  }
-
-  &__footer {
   }
 }

@@ -25,6 +25,17 @@
       margin-left: 10px;
     }
 
+    &__popup {
+      display: none;
+      position: absolute;
+      width: 260px;
+      background: $white;
+      box-shadow: 0 0 6px #00000024;
+      padding: 10px;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
     &__dots {
       border-radius: 50%;
       width: 15px;
@@ -40,17 +51,6 @@
         top: 40px;
         right: 20px;
       }
-    }
-
-    &__popup {
-      display: none;
-      position: absolute;
-      width: 260px;
-      background: $white;
-      box-shadow: 0 0 6px #00000024;
-      padding: 10px;
-      border-radius: 8px;
-      box-sizing: border-box;
     }
 
     &__popup-item {
