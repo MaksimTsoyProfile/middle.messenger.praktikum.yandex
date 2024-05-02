@@ -53,6 +53,9 @@ class LoginPage extends Block {
   handleSubmit = (event: Event) => {
     const userController = new UserController();
     event.preventDefault();
+    (event.target as HTMLInputElement)
+      .querySelectorAll('input')
+      .forEach((input) => input.blur());
     const form = event.target as HTMLFormElement;
     let isValid = true;
 
