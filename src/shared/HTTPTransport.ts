@@ -12,7 +12,8 @@ type Options = {
   timeout?: number;
   headers?: string;
   retries?: number;
-  data?: Record<string, unknown>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data?: any;
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
@@ -22,7 +23,8 @@ type HTTPMethod = (
   options?: OptionsWithoutMethod,
 ) => Promise<unknown>;
 
-function queryStringify(data: Record<string, unknown>) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function queryStringify(data: Record<string, any>) {
   const params = [];
 
   for (const key in data) {
@@ -33,7 +35,7 @@ function queryStringify(data: Record<string, unknown>) {
       } else if (typeof value === 'object') {
         params.push(`${encodeURIComponent(key)}=[object Object]`);
       } else {
-        params.push(`${encodeURIComponent(key)}=${JSON.stringify(value)}`);
+        params.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
       }
     }
   }
@@ -86,10 +88,7 @@ class HTTPTransport {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       if (method === METHODS.GET) {
-        xhr.open(
-          method,
-          `${url}${queryStringify(data as Record<string, unknown>)}`,
-        );
+        xhr.open(method, `${url}${queryStringify(data)}`);
       } else {
         xhr.open(method, url);
       }
