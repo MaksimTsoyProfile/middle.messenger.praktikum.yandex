@@ -1,14 +1,9 @@
 import EventBus from './EventBus';
 import Handlebars from 'handlebars';
 
-export type Props = {
-  events?: { [eventName: string]: (e: Event) => void };
-  [prop: string]: unknown;
-};
+export type Props = Record<string, unknown>;
 
 type Attributes = Record<string, string>;
-
-export type Lists = Record<string, Block[]>;
 
 type Events = {
   INIT: string;
@@ -49,7 +44,8 @@ export default class Block {
   }
 
   _addEvents() {
-    const { events = {} } = this.props;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { events = {} as any } = this.props;
     Object.keys(events).forEach((eventName) => {
       // Здесь я добавил обработку событий blur и submit так как у меня input и form обернут в div, альтернативой было напрямую переписать компоненты input и form, но я посчитал что это сломает мою папочную структуру
 
@@ -66,7 +62,8 @@ export default class Block {
   }
 
   _removeEvents() {
-    const { events = {} } = this.props;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { events = {} as any } = this.props;
     if (events) {
       Object.keys(events).forEach((eventName) => {
         this._element?.removeEventListener(eventName, events[eventName]);
@@ -120,7 +117,8 @@ export default class Block {
   _getChildrenPropsAndProps(propsAndChildren: Props) {
     const children: Record<string, Block> = {};
     const props: Props = {};
-    const lists: Lists = {};
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const lists: any = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
