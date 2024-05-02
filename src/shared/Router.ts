@@ -1,3 +1,4 @@
+import Block from '../shared/Block.ts';
 import Route from './Route.ts';
 
 class Router {
@@ -18,8 +19,7 @@ class Router {
     Router.__instance = this;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  use(pathname: string, block: any) {
+  use(pathname: string, block: typeof Block) {
     const route = new Route(pathname, block);
     this.routes.push(route);
     return this;

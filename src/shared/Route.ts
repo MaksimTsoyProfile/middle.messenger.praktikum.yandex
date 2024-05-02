@@ -1,13 +1,12 @@
+import Block from '../shared/Block.ts';
 import { renderDOM, isEqual } from './utils.ts';
 
 class Route {
   private _pathname: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private _blockClass: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private _block: any;
+  private _blockClass: typeof Block;
+  private _block: Block | null;
 
-  constructor(pathname: string, view: string) {
+  constructor(pathname: string, view: typeof Block) {
     this._pathname = pathname;
     this._blockClass = view;
     this._block = null;

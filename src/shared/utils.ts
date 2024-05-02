@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type PlainObject<T = any> = {
+import Block from '../shared/Block.ts';
+
+type PlainObject<T = unknown> = {
   [k in string]: T;
 };
 
@@ -43,8 +44,9 @@ export const isDeepEqual = (lhs: PlainObject, rhs: PlainObject) => {
   return true;
 };
 
-export const renderDOM = (block: { getContent: () => HTMLElement }) => {
+export const renderDOM = (block: Block) => {
   const root = document.getElementById('app') as HTMLElement;
-  root.appendChild(block.getContent());
+  const element = block.getContent();
+  if (element) root?.appendChild(element);
   return root;
 };
