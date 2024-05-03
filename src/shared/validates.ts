@@ -33,7 +33,8 @@ type FieldName =
   | 'oldPassword'
   | 'newPassword'
   | 'phone'
-  | 'message';
+  | 'message'
+  | 'title';
 
 export const validate = (
   value: string,
@@ -50,6 +51,7 @@ export const validate = (
     newPassword: validatePassword(value),
     phone: validatePhone(value),
     message: validateMessage(value),
+    title: validateMessage(value),
   };
   return errorByFieldName[fieldName as FieldName];
 };

@@ -25,16 +25,44 @@
       margin-left: 10px;
     }
 
+    .popup {
+      display: none;
+      position: absolute;
+      width: 260px;
+      background: $white;
+      box-shadow: 0 0 6px #00000024;
+      padding: 10px;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
     &__dots {
       border-radius: 50%;
       width: 15px;
       height: 15px;
       color: $black;
+      padding: 14px;
       margin-left: auto;
+
+      &:hover {
+        .popup {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          top: 40px;
+          right: 20px;
+        }
+      }
+    }
+
+    &__popup-item {
+      margin-bottom: 2px;
     }
   }
 
   &__body {
+    display: flex;
+    flex-direction: column-reverse;
     padding: 20px;
   }
 

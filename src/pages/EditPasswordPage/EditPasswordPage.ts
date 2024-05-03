@@ -1,42 +1,40 @@
-import { navigate } from '../../shared/navigate.ts';
+import { PasswordsData } from '../../api/AuthApi.ts';
+import UserController from '../../controllers/UserController.ts';
+import router from '../../router.ts';
 import { Avatar } from '../../components/Avatar';
 import { InputField } from '../../components/InputField';
 import { Button } from '../../components/Button';
 import Block from '../../shared/Block.ts';
 
-type EditPasswordPageProps = {
-  src?: string;
-};
-
 class EditPasswordPage extends Block {
-  constructor(props: EditPasswordPageProps) {
+  constructor() {
     super({
       Avatar: new Avatar({
-        src: props.src || '',
+        src: '',
       }),
       SaveButton: new Button({
         text: 'Сохранить',
-        page: 'profile',
+        page: '/settings',
         type: 'submit',
       }),
       OldPasswordInput: new InputField({
         name: 'oldPassword',
         type: 'password',
-        value: 'password',
+        value: '',
         label: 'Старый пароль',
         disabled: false,
       }),
       NewPasswordInput: new InputField({
         name: 'newPassword',
         type: 'password',
-        value: 'password',
+        value: '',
         label: 'Новый пароль',
         disabled: false,
       }),
       ReplacePasswordInput: new InputField({
         name: 'newPassword',
         type: 'password',
-        value: 'password',
+        value: '',
         label: 'Повторите новый пароль',
         disabled: false,
       }),
@@ -50,6 +48,7 @@ class EditPasswordPage extends Block {
 
   handleSubmit = (event: Event) => {
     event.preventDefault();
+    const userController = new UserController();
     const form = event.target as HTMLFormElement;
     let isValid = true;
 
@@ -71,9 +70,14 @@ class EditPasswordPage extends Block {
       formData.forEach((value, key) => {
         data[key] = value.toString();
       });
-      console.log(data);
-      navigate('chat');
-      form.reset();
+      userController.editPassword(data as PasswordsData).then((response) => {
+        if (response instanceof XMLHttpRequest && response.status === 200) {
+          router.go('/messenger');
+          form.reset();
+        } else {
+          alert('Возникла ошибка');
+        }
+      });
     }
   };
 

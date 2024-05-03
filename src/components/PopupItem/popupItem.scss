@@ -1,0 +1,23 @@
+/* stylelint-disable-next-line */
+@import '../../assets/variables';
+
+.popup-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 10px;
+  color: $black;
+  border-radius: 8px;
+  background: $white;
+  border: none;
+  cursor: pointer;
+
+  img {
+    margin-right: 10px;
+    color: white;
+  }
+
+  &:hover {
+    background: $lightGrey;
+  }
+}

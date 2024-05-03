@@ -1,3 +1,5 @@
+import { config } from '../shared/config.ts';
+
 const enum METHODS {
   GET = 'GET',
   POST = 'POST',
@@ -23,10 +25,6 @@ type HTTPMethod = (
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function queryStringify(data: Record<string, any>) {
-  if (!data || typeof data !== 'object') {
-    throw new Error('Invalid data object provided');
-  }
-
   const params = [];
 
   for (const key in data) {
@@ -46,9 +44,15 @@ function queryStringify(data: Record<string, any>) {
 }
 
 class HTTPTransport {
+  private baseUrl: string;
+
+  constructor() {
+    this.baseUrl = config.baseUrl;
+  }
+
   get: HTTPMethod = (url, options = {}) => {
     return this.request(
-      url,
+      `${this.baseUrl}${url}`,
       { ...options, method: METHODS.GET },
       options.timeout,
     );
@@ -56,7 +60,7 @@ class HTTPTransport {
 
   put: HTTPMethod = (url, options = {}) => {
     return this.request(
-      url,
+      `${this.baseUrl}${url}`,
       { ...options, method: METHODS.PUT },
       options.timeout,
     );
@@ -64,7 +68,7 @@ class HTTPTransport {
 
   post: HTTPMethod = (url, options = {}) => {
     return this.request(
-      url,
+      `${this.baseUrl}${url}`,
       { ...options, method: METHODS.POST },
       options.timeout,
     );
@@ -72,7 +76,7 @@ class HTTPTransport {
 
   delete: HTTPMethod = (url, options = {}) => {
     return this.request(
-      url,
+      `${this.baseUrl}${url}`,
       { ...options, method: METHODS.DELETE },
       options.timeout,
     );
@@ -94,7 +98,7 @@ class HTTPTransport {
           xhr.setRequestHeader(key, value);
         }
       }
-
+      xhr.withCredentials = true;
       xhr.onload = function () {
         resolve(xhr);
       };
@@ -104,8 +108,11 @@ class HTTPTransport {
       xhr.ontimeout = reject;
       if (method === METHODS.GET || !data) {
         xhr.send();
-      } else {
+      } else if (data instanceof FormData) {
         xhr.send(data);
+      } else {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(data));
       }
     });
   }

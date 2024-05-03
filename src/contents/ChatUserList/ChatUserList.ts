@@ -1,10 +1,15 @@
-import { Link } from '../../components';
+import connectWS from '../../shared/connectWS.ts';
+import { ChatController } from '../../controllers/ChatController.ts';
+import store, { Chat } from '../../shared/Store.ts';
+import { Button, Link } from '../../components';
 import { UserItem } from '../../components/UserItem';
 import Block from '../../shared/Block.ts';
 import { SearchInput } from '../../components/SearchInput';
+import { connect } from '../../shared/connect.ts';
 
 type ChatUserListProps = {
-  value: string;
+  handleAddChat: () => unknown;
+  ChatsComponent: UserItem[];
 };
 
 class ChatUserList extends Block {
@@ -12,35 +17,26 @@ class ChatUserList extends Block {
     super({
       ...props,
       SearchInput: new SearchInput({
-        value: props.value,
+        value: '',
       }),
       ProfileLink: new Link({
-        page: 'profile',
+        page: '/settings',
         text: 'Профиль >',
         color: 'secondary',
       }),
-      lists: [
-        new UserItem({
-          name: 'Андрей',
-          text: 'Изображение',
-          date: '10:49',
-          counts: 2,
-        }),
-        new UserItem({
-          name: 'Киноклуб',
-          text: 'Стикер',
-          date: '12:00',
-          counts: 2,
-        }),
-        new UserItem({
-          name: 'Илья',
-          text: 'Друзья, у меня для вас особенный выпуск новостей! Бла бла бла',
-          date: '15:12',
-          counts: 4,
-        }),
-      ],
+      AddChatButton: new Button({
+        type: 'button',
+        text: 'Добавить чат',
+        events: {
+          click: () => {
+            props.handleAddChat();
+          },
+        },
+      }),
+      ChatsComponent: props.ChatsComponent,
     });
   }
+
   override render() {
     return `
       <div class='chat-user'>
@@ -50,10 +46,64 @@ class ChatUserList extends Block {
         <div class='chat-user__search'>
           {{{ SearchInput }}}
         </div>
-        {{{ lists }}}
+        <div class='chat-user__item'>
+          {{{ AddChatButton }}}
+        </div>
+        <div class='chat-user__item'>
+          {{{ AddUserButton }}}
+        </div>
+        {{{ ChatsComponent }}}
       </div>
     `;
   }
 }
 
-export default ChatUserList;
+const chatUserListConnect = connect((state) => {
+  const ChatsComponent =
+    state.chats.length > 0
+      ? state.chats.map(
+          (chat: Chat) =>
+            new UserItem({
+              id: chat.id,
+              name: chat.title,
+              text: chat.last_message?.content,
+              date: '10:49',
+              counts: chat.unread_count,
+              isActive: store.getState().selectedChat === chat.id,
+              events: {
+                click: async () => {
+                  const chatController = new ChatController();
+                  if (
+                    store.getState().socket &&
+                    store.getState().selectedChat !== chat.id
+                  ) {
+                    store.getState().socket?.close();
+                  }
+                  if (store.getState().selectedChat !== chat.id) {
+                    const userId = store.getState().user.id;
+                    const chatId = chat.id;
+                    try {
+                      const response = await connectWS(userId, chatId);
+                      if (response) {
+                        store.set('socket', response);
+                        chatController.getChatUsers(chatId);
+                      }
+                    } catch (error) {
+                      console.log(error);
+                      return error;
+                    }
+                  }
+                  store.set('selectedChat', chat.id);
+                },
+              },
+            }),
+        )
+      : null;
+  return {
+    ChatsComponent,
+    selectedChat: state.selectedChat,
+    socket: state.socket,
+  };
+});
+
+export default chatUserListConnect(ChatUserList);

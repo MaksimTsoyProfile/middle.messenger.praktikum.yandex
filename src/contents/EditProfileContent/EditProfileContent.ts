@@ -3,18 +3,17 @@ import { ProfileData } from '../../api/AuthApi.ts';
 import UserController from '../../controllers/UserController.ts';
 import router from '../../router.ts';
 import { Avatar } from '../../components/Avatar';
-import { Link } from '../../components/Link';
+import { Button } from '../../components/Button';
 import { InputField } from '../../components/InputField';
 import Block from '../../shared/Block.ts';
 import { connect } from '../../shared/connect.ts';
 
-type ProfileContentProps = {
+type EditProfileContentProps = {
   avatar?: string;
   email: string;
   login: string;
   first_name: string;
   second_name: string;
-  display_name: string;
   phone: string;
   AvatarComponent: Avatar;
   InputFieldEmail: InputField;
@@ -25,8 +24,8 @@ type ProfileContentProps = {
   InputFieldPhone: InputField;
 };
 
-class ProfileContent extends Block {
-  constructor(props: ProfileContentProps) {
+class EditProfileContent extends Block {
+  constructor(props: EditProfileContentProps) {
     super({
       AvatarComponent: props.AvatarComponent,
       InputFieldEmail: props.InputFieldEmail,
@@ -35,25 +34,16 @@ class ProfileContent extends Block {
       InputFieldSecondName: props.InputFieldSecondName,
       InputFieldDisplayName: props.InputFieldDisplayName,
       InputFieldPhone: props.InputFieldPhone,
-      EditProfileLink: new Link({
-        page: '/edit-profile',
-        text: 'Изменить данные',
+      SaveButton: new Button({
+        text: 'Сохранить',
+        page: '/settings',
+        type: 'submit',
       }),
-      EditPasswordLink: new Link({
-        page: '/edit-password',
-        text: 'Изменить пароль',
-      }),
-      ExitLink: new Link({
-        page: '/messenger',
-        text: 'Выйти',
-        color: 'danger',
-        events: {
-          click: () => {
-            this.handleExit();
-          },
+      events: {
+        submit: (e: Event) => {
+          this.handleSubmit(e);
         },
-      }),
-      display_name: props.display_name,
+      },
     });
   }
 
@@ -125,68 +115,78 @@ class ProfileContent extends Block {
         <div class='profile-container__input'>
           {{{ InputFieldPhone }}}
         </div>
-        <div class='profile-container__links'>
-          <div class='profile-container__links__item'>
-            {{{ EditProfileLink }}}
-          </div>
-          <div class='profile-container__links__item'>
-            {{{ EditPasswordLink }}}
-          </div>
-          <div class='profile-container__links__item-danger'>
-            {{{ ExitLink }}}
-          </div>
+        <div class='profile-container__save-button'>
+          {{{ SaveButton }}}
         </div>
       </form>
     `;
   }
 }
 
-const profileContentConnect = connect((state) => {
+const editProfileContentConnect = connect((state) => {
   const userData = { ...state.user };
   const AvatarComponent = new Avatar({
     src: userData.avatar ? `${config.baseUrl}/resources${userData.avatar}` : '',
+    events: {
+      click: () => {
+        const userController = new UserController();
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.onchange = async (e: Event) => {
+          if (
+            e.currentTarget instanceof HTMLInputElement &&
+            e.currentTarget.files
+          ) {
+            const formData = new FormData();
+            formData.append('avatar', e.currentTarget.files[0]);
+            await userController.editAvatar(formData);
+          }
+        };
+        fileInput.click();
+      },
+    },
   });
   const InputFieldEmail = new InputField({
     name: 'email',
     type: 'email',
     value: userData.email,
     label: 'Почта',
-    disabled: true,
+    disabled: false,
   });
   const InputFieldLogin = new InputField({
     name: 'login',
     type: 'text',
     value: userData.login,
     label: 'Логин',
-    disabled: true,
+    disabled: false,
   });
   const InputFieldFirstName = new InputField({
     name: 'first_name',
     type: 'text',
     value: userData.first_name,
     label: 'Имя',
-    disabled: true,
+    disabled: false,
   });
   const InputFieldSecondName = new InputField({
     name: 'second_name',
     type: 'text',
     value: userData.second_name,
     label: 'Фамилия',
-    disabled: true,
+    disabled: false,
   });
   const InputFieldDisplayName = new InputField({
     name: 'display_name',
     type: 'text',
     value: userData.display_name,
     label: 'Имя в чате',
-    disabled: true,
+    disabled: false,
   });
   const InputFieldPhone = new InputField({
     name: 'phone',
     type: 'text',
     value: userData.phone,
     label: 'Телефон',
-    disabled: true,
+    disabled: false,
   });
   return {
     ...userData,
@@ -200,4 +200,4 @@ const profileContentConnect = connect((state) => {
   };
 });
 
-export default profileContentConnect(ProfileContent);
+export default editProfileContentConnect(EditProfileContent);

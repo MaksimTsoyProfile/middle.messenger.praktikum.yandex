@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="427a81b6-8b67-4ec7-b66b-b4db629eb337" name="Changes" comment="" />
+    <list default="true" id="427a81b6-8b67-4ec7-b66b-b4db629eb337" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api/ChatApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/ChatController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/WSTransport.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/connectWS.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/AuthApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/AuthApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/UserController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/EditPasswordPage/EditPasswordPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/EditPasswordPage/EditPasswordPage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/connect.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/connect.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,28 +37,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "sprint__2",
-    "last_opened_file_path": "/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/.stylelintrc.json",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.stylelint": "/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/node_modules/stylelint",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/node_modules/prettier",
-    "settings.editor.selected.configurable": "configurable.stylesheets.stylelint",
-    "ts.external.directory.path": "/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;sprint__3&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/.stylelintrc.json&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/node_modules/stylelint&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.stylesheets.stylelint&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/maksim/Documents/Проекты/Yandex Practicum/middle.messenger.praktikum.yandex/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/contents/ChatMessages" />
@@ -79,6 +92,8 @@
       <workItem from="1709478826144" duration="11437000" />
       <workItem from="1709532071055" duration="93465000" />
       <workItem from="1711035557989" duration="105423000" />
+      <workItem from="1713451639817" duration="5720000" />
+      <workItem from="1713687693767" duration="16137000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,42 @@
+/* stylelint-disable-next-line */
+@import '../../assets/variables';
+
+.user-dialog {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #00000024;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  width: 400px;
+
+  &__close-mark {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    padding: 2px;
+    cursor: pointer;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+    margin-top: 10px;
+    font-weight: normal;
+    font-size: 24px;
+    color: $black;
+  }
+
+  &__input-block {
+    margin-bottom: 20px;
+  }
+}

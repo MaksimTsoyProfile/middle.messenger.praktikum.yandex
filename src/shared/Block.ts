@@ -1,7 +1,7 @@
 import EventBus from './EventBus';
 import Handlebars from 'handlebars';
 
-type Props = Record<string, unknown>;
+export type Props = Record<string, unknown>;
 
 type Attributes = Record<string, string>;
 
@@ -64,11 +64,11 @@ export default class Block {
   _removeEvents() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { events = {} as any } = this.props;
-    Object.keys(events).forEach((eventName) => {
-      for (const eventListener of events[eventName]) {
-        this._element?.removeEventListener(eventName, eventListener);
-      }
-    });
+    if (events) {
+      Object.keys(events).forEach((eventName) => {
+        this._element?.removeEventListener(eventName, events[eventName]);
+      });
+    }
   }
 
   _registerEvents(eventBus: EventBus): void {
@@ -85,6 +85,7 @@ export default class Block {
 
   init(): void {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
   _componentDidMount(): void {
@@ -143,7 +144,9 @@ export default class Block {
     if (!nextProps) {
       return;
     }
-
+    const { children, lists } = this._getChildrenPropsAndProps(nextProps);
+    Object.assign(this.lists, lists);
+    Object.assign(this.children, children);
     Object.assign(this.props, nextProps);
   };
 
@@ -169,7 +172,9 @@ export default class Block {
 
     Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
-      stub?.replaceWith(child.getContent());
+      if (stub) {
+        stub?.replaceWith(child.getContent());
+      }
     });
 
     Object.entries(this.lists).forEach(([, child]) => {
@@ -183,7 +188,9 @@ export default class Block {
       });
       // fragment.content.innerHTML = listCont.content;
       const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
-      stub?.replaceWith(listCont.content);
+      if (stub) {
+        stub?.replaceWith(listCont.content);
+      }
     });
 
     const newElement = fragment.content.firstElementChild as Node;
@@ -231,7 +238,7 @@ export default class Block {
   show(): void {
     const content = this.getContent();
     if (content) {
-      content.style.display = 'block';
+      content.style.display = 'flex';
     }
   }
 

@@ -1,4 +1,4 @@
-import { navigate } from '../../shared/navigate.ts';
+import router from '../../router.ts';
 import Block from '../../shared/Block.ts';
 
 type LinkProps = {
@@ -6,21 +6,21 @@ type LinkProps = {
   text: string;
   page: string;
   color?: string;
+  events?: unknown;
 };
 
 class Link extends Block {
   constructor(props: LinkProps) {
     super({
       href: props.href || '#',
-      text: props.text,
-      page: props.page,
       color: props.color || 'primary',
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          navigate(props.page);
+          router.go(props.page);
         },
       },
+      ...props,
     });
   }
 

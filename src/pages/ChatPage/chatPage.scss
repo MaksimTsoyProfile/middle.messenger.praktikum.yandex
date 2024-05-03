@@ -3,6 +3,7 @@
 
 .chat-container {
   display: flex;
+  cursor: pointer;
 
   &__chat-view {
     display: flex;

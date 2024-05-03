@@ -1,4 +1,6 @@
-import { navigate } from '../../shared/navigate.ts';
+import { LoginData } from '../../api/AuthApi.ts';
+import UserController from '../../controllers/UserController.ts';
+import router from '../../router.ts';
 import Block from '../../shared/Block.ts';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
@@ -7,6 +9,7 @@ import { Link } from '../../components/Link';
 class LoginPage extends Block {
   constructor() {
     super({
+      isVisible: true,
       LoginInput: new Input({
         type: 'text',
         name: 'login',
@@ -23,12 +26,12 @@ class LoginPage extends Block {
       }),
       Button: new Button({
         type: 'submit',
-        page: 'chat',
+        page: '/chat',
         text: 'Авторизоваться',
       }),
       Link: new Link({
         text: 'Нет аккаунта?',
-        page: 'register',
+        page: '/sign-up',
       }),
       events: {
         submit: (e: Event) => {
@@ -37,8 +40,22 @@ class LoginPage extends Block {
       },
     });
   }
+
+  componentDidMount() {
+    const userController = new UserController();
+    userController.getUser().then((response) => {
+      if (response instanceof XMLHttpRequest && response.status === 200) {
+        router.go('/messenger');
+      }
+    });
+  }
+
   handleSubmit = (event: Event) => {
+    const userController = new UserController();
     event.preventDefault();
+    (event.target as HTMLInputElement)
+      .querySelectorAll('input')
+      .forEach((input) => input.blur());
     const form = event.target as HTMLFormElement;
     let isValid = true;
 
@@ -55,14 +72,30 @@ class LoginPage extends Block {
       formData.forEach((value, key) => {
         data[key] = value.toString();
       });
-      console.log(data);
-      navigate('chat');
-      form.reset();
+      userController.signIn(data as LoginData).then((response) => {
+        if (response instanceof XMLHttpRequest && response.status === 200) {
+          router.go('/messenger');
+          form.reset();
+        } else {
+          alert('Возникла ошибка');
+        }
+      });
     }
   };
+
+  hide() {
+    super.hide();
+    this.setProps({ isVisible: false });
+  }
+
+  show() {
+    super.show();
+    this.setProps({ isVisible: true });
+  }
+
   override render() {
     return `
-      <div class='wrapper'>
+      <div class='wrapper' {{#if isVisible}} style='display: flex;' {{else}} style='display: none;' {{/if}}>
         <div class='dialog'>
           <main>
             <form class='login-container'>

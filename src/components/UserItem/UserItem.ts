@@ -2,12 +2,15 @@ import { Avatar } from '../../components/Avatar';
 import Block from '../../shared/Block.ts';
 
 type UserItemProps = {
+  id: number;
   self?: boolean;
   name: string;
   text: string;
   date: string;
   counts: number;
   src?: string;
+  events: unknown;
+  isActive: boolean;
 };
 
 class UserItem extends Block {
@@ -16,16 +19,12 @@ class UserItem extends Block {
       Avatar: new Avatar({
         src: props.src || '',
       }),
-      name: props.name,
-      self: props.self,
-      text: props.text,
-      date: props.date,
-      counts: props.counts,
+      ...props,
     });
   }
   override render() {
     return `
-      <div class='user-item'>
+      <div class='user-item' key={{id}} {{#if isActive}} style='background: #e4edfd' {{/if}}>
         <div class='user-item__avatar'>
           {{{ Avatar }}}
         </div>

@@ -8,7 +8,7 @@ class Page500 extends Block {
         title: '500',
         description: 'Мы уже фиксим',
         linkText: 'Назад к чатам',
-        linkPage: 'login',
+        linkPage: '/',
       }),
     });
   }
