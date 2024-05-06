@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "lint:ts": "eslint . --ext .ts,.js",
     "lint:css": "stylelint \"**/*.scss\"",
-    "test": "mocha --es-module-specifier-resolution=node"
+    "test": "mocha --es-module-specifier-resolution=node",
+    "pre-commit": "npm run lint:ts && npm run lint:css && npm run test"
   },
   "husky": {
     "hooks": {
