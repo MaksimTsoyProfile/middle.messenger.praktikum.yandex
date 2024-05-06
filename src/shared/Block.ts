@@ -44,6 +44,7 @@ export default class Block {
   }
 
   _addEvents() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { events = {} as any } = this.props;
     Object.keys(events).forEach((eventName) => {
       // Здесь я добавил обработку событий blur и submit так как у меня input и form обернут в div, альтернативой было напрямую переписать компоненты input и form, но я посчитал что это сломает мою папочную структуру
