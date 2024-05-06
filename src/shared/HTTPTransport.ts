@@ -22,7 +22,6 @@ type HTTPMethod = (
   options?: OptionsWithoutMethod,
 ) => Promise<unknown>;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function queryStringify(data: Record<string, unknown>) {
   const params = [];
 
