@@ -68,7 +68,7 @@ describe('Test Router', function () {
     TestRouter.go('/test');
     TestRouter.use('/test2', TestBlock2);
     TestRouter.go('/test2');
-    expect(TestRouter._currentRoute?._pathname).to.equal('/test');
+    expect(TestRouter._currentRoute?._pathname).to.equal('/test2');
     stub.restore();
   });
 
