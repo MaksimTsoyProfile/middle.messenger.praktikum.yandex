@@ -21,6 +21,7 @@ describe('Test HTTPTransport', () => {
 
   afterEach(() => {
     requests = [];
+    xhr.restore();
   });
 
   it('Test GET request', () => {
@@ -28,5 +29,40 @@ describe('Test HTTPTransport', () => {
     const [request] = requests;
     console.log(request);
     expect(request.method).to.eq('GET');
+  });
+
+  it('Test POST request', () => {
+    httpClient.post('/auth/signin', {
+      data: { login: 'Test', password: 'test' },
+    });
+
+    const [request] = requests;
+
+    expect(request.method).to.equal('POST');
+  });
+
+  it('Test PUT request', () => {
+    httpClient.put('/user/profile', {
+      data: {
+        first_name: 'test',
+        second_name: 'test',
+        display_name: 'test',
+        login: 'test',
+        email: 'test@gmail.com',
+        phone: '123123123',
+      },
+    });
+
+    const [request] = requests;
+
+    expect(request.method).to.equal('PUT');
+  });
+
+  it('Test DELETE request', () => {
+    httpClient.delete('/chats');
+
+    const [request] = requests;
+
+    expect(request.method).to.equal('DELETE');
   });
 });
