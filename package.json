@@ -11,6 +11,8 @@
     "build": "tsc && vite build",
     "start": "npm run build && node server.js",
     "preview": "vite preview",
+    "lint:ts": "eslint . --ext .ts,.js",
+    "lint:css": "stylelint \"**/*.scss\"",
     "test": "mocha --es-module-specifier-resolution=node"
   },
   "husky": {
