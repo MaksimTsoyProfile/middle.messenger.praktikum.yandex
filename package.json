@@ -16,11 +16,6 @@
     "test": "mocha --es-module-specifier-resolution=node",
     "pre-commit": "npm run lint:ts && npm run lint:css && npm run test"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test lint:ts lint:css"
-    }
-  },
   "devDependencies": {
     "@types/chai": "^4.3.16",
     "@types/jest": "^29.5.12",
