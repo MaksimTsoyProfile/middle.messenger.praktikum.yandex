@@ -10,9 +10,24 @@
     "dev": "vite --port 4040 --host",
     "build": "tsc && vite build",
     "start": "npm run build && node server.js",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint:ts": "eslint . --ext .ts,.js",
+    "lint:css": "stylelint \"**/*.scss\"",
+    "test": "mocha --es-module-specifier-resolution=node",
+    "prepare": "husky install",
+    "pre-commit": "npm run lint:ts && npm run lint:css && npm run test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:ts && npm run lint:css && npm run test"
+    }
   },
   "devDependencies": {
+    "@types/node": "^20.12.8",
+    "@types/chai": "^4.3.16",
+    "@types/jest": "^29.5.12",
+    "@types/mocha": "^10.0.6",
+    "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",
     "babel-eslint": "^10.1.0",
@@ -27,7 +42,13 @@
     "typescript": "^5.2.2",
     "vite": "^5.1.4",
     "vite-plugin-copy": "^0.1.6",
-    "vite-plugin-style-import": "^2.0.0"
+    "vite-plugin-style-import": "^2.0.0",
+    "husky": "^8.0.3",
+    "jsdom": "^24.0.0",
+    "mocha": "^10.4.0",
+    "sinon": "^17.0.1",
+    "chai": "^5.1.0",
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
     "handlebars": "^4.7.8",
