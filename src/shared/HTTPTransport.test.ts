@@ -27,7 +27,6 @@ describe('Test HTTPTransport', () => {
   it('Test GET request', () => {
     httpClient.get('/auth/user', {});
     const [request] = requests;
-    console.log(request);
     expect(request.method).to.eq('GET');
   });
 
