@@ -4,7 +4,7 @@ import Route from './Route.ts';
 class Router {
   public routes: Route[] = [];
   private history!: History;
-  private _currentRoute: Route | null = null;
+  public _currentRoute: Route | null = null;
   private static __instance: Router | null;
 
   constructor() {

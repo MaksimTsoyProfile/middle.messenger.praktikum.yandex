@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import Sinon from 'sinon';
 import Block, { Props } from '../shared/Block.ts';
-import { describe } from 'mocha';
+import { describe, it } from 'mocha';
 
 describe('Test Block', () => {
   let TestBlock: typeof Block;
