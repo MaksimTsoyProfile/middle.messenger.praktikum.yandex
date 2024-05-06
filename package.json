@@ -17,6 +17,7 @@
     "pre-commit": "npm run lint:ts && npm run lint:css && npm run test"
   },
   "devDependencies": {
+    "@types/node": "^20.12.8",
     "@types/chai": "^4.3.16",
     "@types/jest": "^29.5.12",
     "@types/mocha": "^10.0.6",
@@ -35,18 +36,17 @@
     "typescript": "^5.2.2",
     "vite": "^5.1.4",
     "vite-plugin-copy": "^0.1.6",
-    "vite-plugin-style-import": "^2.0.0"
-  },
-  "dependencies": {
-    "@types/node": "^20.12.8",
-    "chai": "^5.1.0",
-    "handlebars": "^4.7.8",
+    "vite-plugin-style-import": "^2.0.0",
     "husky": "^8.0.3",
     "jsdom": "^24.0.0",
     "mocha": "^10.4.0",
     "sinon": "^17.0.1",
-    "stylelint-config-standard": "^36.0.0",
-    "stylelint-scss": "^6.2.1",
+    "chai": "^5.1.0",
     "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-scss": "^6.2.1"
   }
 }
