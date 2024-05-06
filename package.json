@@ -11,7 +11,7 @@
     "build": "tsc && vite build",
     "start": "npm run build && node server.js",
     "preview": "vite preview",
-    "test": "mocha --es-module-specifier-resolution=node"
+    "test": "mocha"
   },
   "devDependencies": {
     "@types/chai": "^4.3.16",
